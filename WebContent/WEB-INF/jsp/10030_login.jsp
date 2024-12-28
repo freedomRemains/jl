@@ -1,0 +1,22 @@
+<%@ page pageEncoding="UTF-8"%>
+
+          <% if ("1000201".equals(columnMap.get("MHTMLPARTS_ID"))
+                 && authUtil.hasEditAuth("1000201", authList)) { // ログイン情報入力領域 %>
+            <% if ("1000001".equals(account.get(0).get("TACCOUNT_ID"))) { %>
+              <div class="<%=columnMap.get("MHTMLPARTS_ID")%>">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>メールアドレス</td>
+                      <td><input id="MAIL_ADDRESS" name="MAIL_ADDRESS" value="grandmaster@account.com"></td>
+                    </tr>
+                    <tr>
+                      <td>パスワード</td>
+                      <td><input id="PASSWORD" type="password" name="PASSWORD" value="password"></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <input type="button" name="doPost" value="送信" onclick="submitMainForm()">
+              </div>
+            <% } %>
+          <% } %>
