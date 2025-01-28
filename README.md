@@ -15,6 +15,79 @@ Java Library
 (本資料ではdockerによるMySQL構築をご紹介します)
 
 ---
+### MySQLを使用するためのdocker設定について
+「docker-compose.yml」に次のように設定すると、MySQLを利用できます。
+```
+# versionは '3' でも動作する。細かく指定するなら、「'3.6'」のようにマイナーバージョンまで指定する
+version: '3'
+
+# サービス定義の開始
+services:
+
+  # DBの設定
+  db:
+
+    # コンテナ名
+    container_name: image_mysql
+
+    # カレントディレクトリを基準としてビルドする
+    build:
+      context: .
+
+    # イメージは MySQL の最新版とする
+    image: mysql:latest
+
+    # 標準入出力先のデバイスを常時起動しておかないとコンテナが落ちてしまうのでtrueとする
+    tty: true
+
+    # 暗号化なしの認証を行う場合は、次の設定を有効にする
+    #command: mysqld --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+
+    # MySQL8以降で標準となった暗号化による認証を行う場合は、次の設定を有効にする
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+
+    # 環境変数を設定する
+    environment:
+      MYSQL_ROOT_PASSWORD: [rootユーザのパスワード]
+      MYSQL_DATABASE: JLDB
+      MYSQL_USER: mysqluser
+      MYSQL_PASSWORD: [mysqluserのパスワード]
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+
+    # ポートは通常のMySQLポート(3306)を使用する(ホストで別のMySQLが立ち上がっていたら気付くように)
+    ports:
+      - 3306:3306
+
+    # ボリュームの定義を行う(初期データ投入SQLの位置とmy.cnfの位置をWindowsと共有する)
+    volumes:
+      - ./mysql/initdb:/docker-entrypoint-initdb.d
+      - ./mysql/config/my.cnf:/etc/mysql/conf.d/my.cnf
+      - mysql_vol:/var/lib/mysql
+
+volumes:
+  mysql_vol:
+```
+
+「docker-compose.yml」配置先には、次のディレクトリ構成を作成してください。
+```
+docker-compose.yml
+└─mysql
+   ├─config
+   └─initdb
+```
+
+「config」配下には「my.cnf」を配置します。次のような設定を記述します。
+```
+[mysqld]
+character-set-server=utf8mb4
+collation-server=utf8mb4_unicode_ci
+
+[client]
+default-character-set=utf8mb4
+```
+「initdb」配下に初期化SQLを配置すると、一番最初にMySQLを起動したときに、そのSQLが実行されます。
+
+---
 ### 使い方
 
 - ローカルに[jl]をクローンしてください。
