@@ -2,29 +2,5 @@
 
           <% if ("1000001".equals(columnMap.get("MHTMLPARTS_ID"))
                  && authUtil.hasReadAuth("1000001", authList)) { // システム名、共通ヘッダ %>
-            <div id="headerArea" class="headerArea">
-              <h1 class="headerTitle"><%=systemName.get(0).get("GNR_VAL")%></h1>
-              <div id="loginUserArea" class="loginUserArea">
-                <table>
-                  <tbody>
-                    <tr>
-                      <td><%=account.get(0).get("ACCOUNT_NAME")%></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="flexButton">
-                <% var urlLinkList = (ArrayList<LinkedHashMap<String, String>>) request.getAttribute("urlLink");
-                   if (urlLinkList != null) {
-                     for (LinkedHashMap<String, String> urlLink : urlLinkList) {
-                       String link = urlLink.get("URI_PATTERN");
-                       String pageName = urlLink.get("PAGE_NAME");
-                       if ("/jl/service/error.html".equals(link)) {
-                         continue;
-                       } %>
-                  <div class="largePadding"><a class="linkButton" href="<%=link%>"><%=pageName%></a></div>
-                <%   } %>
-                <% } %>
-              </div>
-            </div>
+            <%@ include file="common/20010_commonHeader.jsp"%>
           <% } %>

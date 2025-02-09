@@ -5,6 +5,5 @@
                String errMsg = (String) request.getAttribute("errMsg");
                String stackTrace = (String) request.getAttribute("stackTrace");
                var errPageMsg = (ArrayList<LinkedHashMap<String, String>>) request.getAttribute("errPageMsg"); %>
-            <div><h3><span><%=errPageMsg.get(0).get("GNR_VAL")%></span></h3></div>
-            <div><span><pre><%=stackTrace%></pre></span></div>
+            <%@ include file="common/20020_commonError.jsp"%>
           <% } %>
