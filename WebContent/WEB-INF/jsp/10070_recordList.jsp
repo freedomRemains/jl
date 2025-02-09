@@ -103,16 +103,16 @@
                 <div class="littlePadding">
                   <% if (lastPageInt > 1) { %>
                     <% if (currentPageInt > 1) { %>
-                      <a href="/jl/service/tableDataMainte.html?tableName=<%=tableName%>&limit=<%=currentLimit%>&offset=0">1</a>　
+                      <a href="/jl/service/tableDataMainte.html?tableName=<%=tableName%>&limit=<%=currentLimit%>&offset=0">最初のページ(1)</a>　
                     <% } %>
                     <% if (prevPageInt > 1) { %>
-                      <a href="/jl/service/tableDataMainte.html?tableName=<%=tableName%>&limit=<%=currentLimit%>&offset=<%=prevPageOffset%>"><%=prevPage%></a>　
+                      <a href="/jl/service/tableDataMainte.html?tableName=<%=tableName%>&limit=<%=currentLimit%>&offset=<%=prevPageOffset%>">前のページ(<%=prevPage%>)</a>　
                     <% } %>
                     <% if (nextPageInt < lastPageInt) { %>
-                      <a href="/jl/service/tableDataMainte.html?tableName=<%=tableName%>&limit=<%=currentLimit%>&offset=<%=nextPageOffset%>"><%=nextPage%></a>　
+                      <a href="/jl/service/tableDataMainte.html?tableName=<%=tableName%>&limit=<%=currentLimit%>&offset=<%=nextPageOffset%>">次のページ(<%=nextPage%>)</a>　
                     <% } %>
                     <% if (currentPageInt < lastPageInt) { %>
-                      <a href="/jl/service/tableDataMainte.html?tableName=<%=tableName%>&limit=<%=currentLimit%>&offset=<%=lastPageOffset%>"><%=lastPage%></a>　
+                      <a href="/jl/service/tableDataMainte.html?tableName=<%=tableName%>&limit=<%=currentLimit%>&offset=<%=lastPageOffset%>">最後のページ(<%=lastPage%>)</a>　
                     <% } %>
                   <% } %>
                   <label><span class="genericLabel"><%=currentPage%>／<%=lastPage%>　表示件数</span></label>
