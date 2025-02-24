@@ -42,22 +42,6 @@ public class UpdateRecordServiceTest extends TestBase {
 			service.doService(input, output);
 			fail();
 		} catch (BusinessRuleViolationException e) {
-			assertEquals(new Mu().msg("msg.common.noParam", "requestKind"), e.getLocalizedMessage());
-		}
-
-		try {
-			input.putString("requestKind", "GET");
-			service.doService(input, output);
-			fail();
-		} catch (BusinessRuleViolationException e) {
-			assertEquals(new Mu().msg("msg.common.noParam", "requestUri"), e.getLocalizedMessage());
-		}
-
-		try {
-			input.putString("requestUri", "/jl/service/top.html");
-			service.doService(input, output);
-			fail();
-		} catch (BusinessRuleViolationException e) {
 			assertEquals(new Mu().msg("msg.common.noParam", "tableName"), e.getLocalizedMessage());
 		}
 
@@ -78,8 +62,6 @@ public class UpdateRecordServiceTest extends TestBase {
 		var output = new GenericParam();
 		var service = new UpdateRecordService();
 		input.setDb(getDb());
-		input.putString("requestKind", "GET");
-		input.putString("requestUri", "/jl/service/tableDataMainte/updateRecord.html");
 		input.putString("tableName", "MVIEWDEF");
 		input.putString("recordId", "1000020");
 		input.putString("FOREIGN_TABLE", "TEST_TABLE");
@@ -103,8 +85,6 @@ public class UpdateRecordServiceTest extends TestBase {
 		var output = new GenericParam();
 		var service = new UpdateRecordService();
 		input.setDb(getDb());
-		input.putString("requestKind", "GET");
-		input.putString("requestUri", "/jl/service/tableDataMainte/updateRecord.html");
 		input.putString("tableName", "NOTEXISTTABLE");
 		input.putString("recordId", "1");
 
@@ -127,8 +107,6 @@ public class UpdateRecordServiceTest extends TestBase {
 		var output = new GenericParam();
 		var service = new UpdateRecordService();
 		input.setDb(getDb());
-		input.putString("requestKind", "GET");
-		input.putString("requestUri", "/jl/service/tableDataMainte/updateRecord.html");
 		input.putString("tableName", "MGNRGRP");
 		input.putString("recordId", "1000001");
 		input.putString("GNR_GRP_NAME", "システムプロパティ2");
@@ -154,8 +132,6 @@ public class UpdateRecordServiceTest extends TestBase {
 		var output = new GenericParam();
 		var service = new UpdateRecordService();
 		input.setDb(getDb());
-		input.putString("requestKind", "GET");
-		input.putString("requestUri", "/jl/service/tableDataMainte/updateRecord.html");
 		input.putString("tableName", "MGNRGRP");
 		input.putString("recordId", "1000001");
 		input.putString("GNR_GRP_NAME", "システムプロパティ3");
@@ -180,8 +156,6 @@ public class UpdateRecordServiceTest extends TestBase {
 		var output = new GenericParam();
 		var service = new UpdateRecordService();
 		input.setDb(getDb());
-		input.putString("requestKind", "GET");
-		input.putString("requestUri", "/jl/service/tableDataMainte/updateRecord.html");
 		input.putString("tableName", "MGNRGRP");
 		input.putString("recordId", "1000001");
 		input.putString("accountId", "dbadmin");
@@ -208,8 +182,6 @@ public class UpdateRecordServiceTest extends TestBase {
 		var output = new GenericParam();
 		var service = new UpdateRecordService();
 		input.setDb(getDb());
-		input.putString("requestKind", "GET");
-		input.putString("requestUri", "/jl/service/tableDataMainte/updateRecord.html");
 		input.putString("tableName", "MGNRGRP");
 		input.putString("recordId", "1000001");
 		input.putString("GNR_GRP_NAME", "システムプロパティ2");

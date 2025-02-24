@@ -17,8 +17,6 @@ public class LoginService implements ServiceInterface {
 		// 必要なパラメータが入力されていなければエラーとする
 		InputCheckUtil inputCheckUtil = new InputCheckUtil();
 		inputCheckUtil.checkDb(input);
-		inputCheckUtil.checkParam(input, "requestKind");
-		inputCheckUtil.checkParam(input, "requestUri");
 		inputCheckUtil.checkParam(input, "MAIL_ADDRESS");
 		inputCheckUtil.checkParam(input, "PASSWORD");
 

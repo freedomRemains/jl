@@ -42,22 +42,6 @@ public class DeleteRecordServiceTest extends TestBase {
 			service.doService(input, output);
 			fail();
 		} catch (BusinessRuleViolationException e) {
-			assertEquals(new Mu().msg("msg.common.noParam", "requestKind"), e.getLocalizedMessage());
-		}
-
-		try {
-			input.putString("requestKind", "GET");
-			service.doService(input, output);
-			fail();
-		} catch (BusinessRuleViolationException e) {
-			assertEquals(new Mu().msg("msg.common.noParam", "requestUri"), e.getLocalizedMessage());
-		}
-
-		try {
-			input.putString("requestUri", "/jl/service/top.html");
-			service.doService(input, output);
-			fail();
-		} catch (BusinessRuleViolationException e) {
 			assertEquals(new Mu().msg("msg.common.noParam", "tableName"), e.getLocalizedMessage());
 		}
 
@@ -78,8 +62,6 @@ public class DeleteRecordServiceTest extends TestBase {
 		var output = new GenericParam();
 		var service = new DeleteRecordService();
 		input.setDb(getDb());
-		input.putString("requestKind", "GET");
-		input.putString("requestUri", "/jl/service/tableDataMainte/deleteRecord.html");
 		input.putString("tableName", "MVIEWDEF");
 		input.putString("recordId", "1000020");
 
@@ -102,8 +84,6 @@ public class DeleteRecordServiceTest extends TestBase {
 		var output = new GenericParam();
 		var service = new DeleteRecordService();
 		input.setDb(getDb());
-		input.putString("requestKind", "GET");
-		input.putString("requestUri", "/jl/service/tableDataMainte/deleteRecord.html");
 		input.putString("tableName", "NOTEXISTTABLE");
 		input.putString("recordId", "1");
 
@@ -126,8 +106,6 @@ public class DeleteRecordServiceTest extends TestBase {
 		var output = new GenericParam();
 		var service = new DeleteRecordService();
 		input.setDb(getDb());
-		input.putString("requestKind", "GET");
-		input.putString("requestUri", "/jl/service/tableDataMainte/deleteRecord.html");
 		input.putString("tableName", "MVIEWDEF");
 		input.putString("recordId", "1000020");
 

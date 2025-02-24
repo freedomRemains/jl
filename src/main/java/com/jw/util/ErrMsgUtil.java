@@ -1,6 +1,7 @@
 package com.jw.util;
 
 import java.sql.SQLException;
+import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -10,13 +11,34 @@ import com.jc.util.Cu;
 public class ErrMsgUtil {
 
 	public String getErrMsgKey(DbInterface db, String sessionId, String accountId,
-			String mgnrgrpId) {
+			String mgnrkeyvalId, Object... args) {
 
+		String errMsg = "0";
 		try {
 			// 汎用グループIDをキーとして、エラーメッセージを取得する
-			var errMsgList = db.select("SELECT GNR_VAL FROM MGNRKEYVAL WHERE MGNRGRP_ID = " + mgnrgrpId);
-			String errMsg = errMsgList.get(0).get("GNR_VAL");
+			errMsg = getErrMsg(db, mgnrkeyvalId, args);
 
+		} catch (SQLException e) {
+
+			// 固定値を返却する
+			return errMsg;
+		}
+
+		// エラーメッセージキーを取得する
+		return getErrMsgKeyByMsg(db, sessionId, accountId, errMsg);
+	}
+
+	public String getErrMsg(DbInterface db, String mgnrkeyvalId, Object... args) throws SQLException {
+
+		// 汎用グループIDをキーとして、エラーメッセージを取得する
+		var errMsgList = db.select("SELECT GNR_VAL FROM MGNRKEYVAL WHERE MGNRKEYVAL_ID = " + mgnrkeyvalId);
+		return MessageFormat.format(errMsgList.get(0).get("GNR_VAL"), args);
+	}
+
+	public String getErrMsgKeyByMsg(DbInterface db, String sessionId, String accountId,
+			String errMsg) {
+
+		try {
 			// エラーメッセージIDの ( 最大値 + 1 ) を取得する
 			var maxIdRecord = db.select("SELECT MAX(TERRMSG_ID) FROM TERRMSG");
 			String maxErrMsgIdStr = maxIdRecord.get(0).get("MAX(TERRMSG_ID)");
