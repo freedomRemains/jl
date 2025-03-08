@@ -25,8 +25,7 @@ public class CreatePageService implements ServiceInterface {
 		inputCheckUtil.checkParam(input, "accountId");
 		inputCheckUtil.checkParam(input, "tableName");
 		inputCheckUtil.checkParam(input, "PAGE_NAME");
-		// TODO 「URI_PATTERN」に変更する
-		inputCheckUtil.checkParam(input, "MURIPATTERN_ID");
+		inputCheckUtil.checkParam(input, "URI_PATTERN");
 
 		try {
 			// HTMLページを作成する
@@ -34,7 +33,7 @@ public class CreatePageService implements ServiceInterface {
 
 		} catch (BusinessRuleViolationException e) {
 
-			// エラーメッセージIDを取得する(例外を発行する側でメッセージとしている)
+			// エラーメッセージIDを取得する(例外を発行する側がメッセージを編集している)
 			String errMsgKey = new ErrMsgUtil().getErrMsgKeyByMsg(input.getDb(),
 					input.getString("sessionId"), input.getString("accountId"),
 					e.getMessage());
@@ -50,10 +49,13 @@ public class CreatePageService implements ServiceInterface {
 
 	private void doCreatePage(GenericParam input, GenericParam output) throws Exception {
 
+		// キー重複の業務エラーがないか、あらかじめチェックする
+		preCheckDuplicateKey(input.getDb(), input.getString("URI_PATTERN"),
+				input.getString("PAGE_NAME"));
+
 		// URIパターンのレコードを作成する
-		// TODO 「URI_PATTERN」に変更する
 		String uriPatternId = createUriPattern(input.getDb(), input.getString("accountId"),
-				input.getString("PAGE_NAME"), input.getString("MURIPATTERN_ID"));
+				input.getString("PAGE_NAME"), input.getString("URI_PATTERN"));
 
 		// リンクのレコードを作成する
 		createLink(input.getDb(), input.getString("accountId"),
@@ -80,11 +82,21 @@ public class CreatePageService implements ServiceInterface {
 		createPartsItem(input.getDb(), input.getString("accountId"), partsInPageId);
 	}
 
-	private String createUriPattern(DbInterface db, String accountId, String pageName,
-			String uriPattern) throws Exception {
+	private void preCheckDuplicateKey(DbInterface db, String uriPattern, String pageName)
+			throws Exception {
 
 		// 同一のURIパターンの登録は禁止する
 		checkDuplicateKey(db, "MURIPATTERN", "URI_PATTERN", uriPattern);
+
+		// 同一のスクリプト名の登録は禁止する
+		checkDuplicateKey(db, "TSCR", "SCR_NAME", pageName);
+
+		// 同一のページ名の登録は禁止する
+		checkDuplicateKey(db, "MHTMLPAGE", "PAGE_NAME", pageName);
+	}
+
+	private String createUriPattern(DbInterface db, String accountId, String pageName,
+			String uriPattern) throws Exception {
 
 		// レコード作成に必要な入力値を作成する
 		GenericParam input = new GenericParam();
@@ -134,9 +146,6 @@ public class CreatePageService implements ServiceInterface {
 	}
 
 	private String createScript(DbInterface db, String accountId, String pageName) throws Exception {
-
-		// 同一のスクリプト名の登録は禁止する
-		checkDuplicateKey(db, "TSCR", "SCR_NAME", pageName);
 
 		// レコード作成に必要な入力値を作成する
 		GenericParam input = new GenericParam();
@@ -194,9 +203,6 @@ public class CreatePageService implements ServiceInterface {
 
 	private String createHtmlPage(DbInterface db, String accountId, String pageName,
 			String uriPatternId, String scriptId) throws Exception {
-
-		// 同一のページ名の登録は禁止する
-		checkDuplicateKey(db, "MHTMLPAGE", "PAGE_NAME", pageName);
 
 		// レコード作成に必要な入力値を作成する
 		GenericParam input = new GenericParam();

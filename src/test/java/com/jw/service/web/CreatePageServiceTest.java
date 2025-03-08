@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.jc.TestBase;
+import com.jc.exception.ApplicationInternalException;
 import com.jc.exception.BusinessRuleViolationException;
 import com.jc.param.GenericParam;
 import com.jc.util.DbPrepareUtil;
@@ -65,8 +66,7 @@ public class CreatePageServiceTest extends TestBase {
 			service.doService(input, output);
 			fail();
 		} catch (BusinessRuleViolationException e) {
-			// TODO 「URI_PATTERN」に変更する
-			assertEquals(new Mu().msg("msg.common.noParam", "MURIPATTERN_ID"), e.getLocalizedMessage());
+			assertEquals(new Mu().msg("msg.common.noParam", "URI_PATTERN"), e.getLocalizedMessage());
 		}
 	}
 
@@ -81,8 +81,7 @@ public class CreatePageServiceTest extends TestBase {
 		input.putString("accountId", "data_loader");
 		input.putString("tableName", "MHTMLPAGE");
 		input.putString("PAGE_NAME", "新規パーツ追加");
-		// TODO 「URI_PATTERN」に変更する
-		input.putString("MURIPATTERN_ID", "/newHtmlParts");
+		input.putString("URI_PATTERN", "/newHtmlParts");
 
 		service.doService(input, output);
 		var recordList = input.getDb().select("SELECT * FROM MURIPATTERN WHERE URI_PATTERN = '/newHtmlParts'");
@@ -103,8 +102,7 @@ public class CreatePageServiceTest extends TestBase {
 		input.putString("accountId", "data_loader");
 		input.putString("tableName", "MHTMLPAGE");
 		input.putString("PAGE_NAME", "TOP");
-		// TODO 「URI_PATTERN」に変更する
-		input.putString("MURIPATTERN_ID", "/jl/service/top.html");
+		input.putString("URI_PATTERN", "/jl/service/top.html");
 
 		// サービスを実行する
 		service.doService(input, output);
@@ -112,6 +110,37 @@ public class CreatePageServiceTest extends TestBase {
 		// エラーメッセージキーを含むリダイレクトのレスポンスになっていることを確認する
 		assertEquals("redirect", output.getString("respKind"));
 		assertTrue(output.getString("destination").startsWith("editPage.html?errMsgKey="));
+
+		// DB更新をロールバックする
+		input.getDb().rollback();
+	}
+
+	@Test
+	void test04() throws SQLException {
+
+		// カバレッジ(予期せぬ例外)
+		var input = new GenericParam();
+		var output = new GenericParam();
+		var service = new CreatePageService();
+		input.setDb(getDb());
+		input.putString("accountId", "data_loader");
+		input.putString("tableName", "MHTMLPAGE");
+		input.putString("PAGE_NAME", "新規パーツ追加");
+		input.putString("URI_PATTERN", "/newHtmlParts");
+
+		// MLINKのレコードを消し、予期せぬ例外を発生させる
+		input.getDb().update("DELETE FROM MLINK");
+
+		// サービスを実行する
+		try {
+			service.doService(input, output);
+			fail();
+
+		} catch (ApplicationInternalException e) {
+
+			// エラーの内容が想定通りか確認する
+			assertTrue(e.getMessage().contains("NumberFormatException"));
+		}
 
 		// DB更新をロールバックする
 		input.getDb().rollback();
