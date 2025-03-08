@@ -41,22 +41,6 @@ public class LoginServiceTest extends TestBase {
 			service.doService(input, output);
 			fail();
 		} catch (BusinessRuleViolationException e) {
-			assertEquals(new Mu().msg("msg.common.noParam", "requestKind"), e.getLocalizedMessage());
-		}
-
-		try {
-			input.putString("requestKind", "GET");
-			service.doService(input, output);
-			fail();
-		} catch (BusinessRuleViolationException e) {
-			assertEquals(new Mu().msg("msg.common.noParam", "requestUri"), e.getLocalizedMessage());
-		}
-
-		try {
-			input.putString("requestUri", "/test");
-			service.doService(input, output);
-			fail();
-		} catch (BusinessRuleViolationException e) {
 			assertEquals(new Mu().msg("msg.common.noParam", "MAIL_ADDRESS"), e.getLocalizedMessage());
 		}
 
@@ -77,8 +61,6 @@ public class LoginServiceTest extends TestBase {
 		var output = new GenericParam();
 		var service = new LoginService();
 		input.setDb(getDb());
-		input.putString("requestKind", "GET");
-		input.putString("requestUri", "/jl/service/top.html");
 		input.putString("MAIL_ADDRESS", "master@account.com");
 		input.putString("PASSWORD", "password");
 
@@ -94,8 +76,6 @@ public class LoginServiceTest extends TestBase {
 		var output = new GenericParam();
 		var service = new LoginService();
 		input.setDb(getDb());
-		input.putString("requestKind", "GET");
-		input.putString("requestUri", "/jl/service/top.html");
 		input.putString("MAIL_ADDRESS", "master2@account.com");
 		input.putString("PASSWORD", "password");
 
@@ -115,8 +95,6 @@ public class LoginServiceTest extends TestBase {
 		var output = new GenericParam();
 		var service = new LoginService();
 		input.setDb(getDb());
-		input.putString("requestKind", "GET");
-		input.putString("requestUri", "/jl/service/top.html");
 		input.putString("MAIL_ADDRESS", "master@account.com");
 		input.putString("PASSWORD", "ngPassword");
 
@@ -136,8 +114,6 @@ public class LoginServiceTest extends TestBase {
 		var output = new GenericParam();
 		var service = new LoginService();
 		input.setDb(getDb());
-		input.putString("requestKind", "GET");
-		input.putString("requestUri", "/jl/service/top.html");
 		input.putString("MAIL_ADDRESS", "master@account.com");
 		input.putString("PASSWORD", "password");
 

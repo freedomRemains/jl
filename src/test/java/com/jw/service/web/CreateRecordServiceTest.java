@@ -42,19 +42,11 @@ public class CreateRecordServiceTest extends TestBase {
 			service.doService(input, output);
 			fail();
 		} catch (BusinessRuleViolationException e) {
-			assertEquals(new Mu().msg("msg.common.noParam", "requestKind"), e.getLocalizedMessage());
+			assertEquals(new Mu().msg("msg.common.noParam", "accountId"), e.getLocalizedMessage());
 		}
 
 		try {
-			input.putString("requestKind", "GET");
-			service.doService(input, output);
-			fail();
-		} catch (BusinessRuleViolationException e) {
-			assertEquals(new Mu().msg("msg.common.noParam", "requestUri"), e.getLocalizedMessage());
-		}
-
-		try {
-			input.putString("requestUri", "/jl/service/tableDataMainte/newRecord.html");
+			input.putString("accountId", "data_loader");
 			service.doService(input, output);
 			fail();
 		} catch (BusinessRuleViolationException e) {
@@ -70,8 +62,7 @@ public class CreateRecordServiceTest extends TestBase {
 		var output = new GenericParam();
 		var service = new CreateRecordService();
 		input.setDb(getDb());
-		input.putString("requestKind", "GET");
-		input.putString("requestUri", "/jl/service/tableDataMainte/newRecord.html");
+		input.putString("accountId", "data_loader");
 		input.putString("tableName", "MGNRGRP");
 		input.putString("GNR_GRP_NAME", "newGroup");
 
@@ -93,8 +84,7 @@ public class CreateRecordServiceTest extends TestBase {
 		var output = new GenericParam();
 		var service = new CreateRecordService();
 		input.setDb(getDb());
-		input.putString("requestKind", "GET");
-		input.putString("requestUri", "/jl/service/tableDataMainte/newRecord.html");
+		input.putString("accountId", "data_loader");
 		input.putString("tableName", "NOTEXISTTABLE");
 		input.putString("GNR_GRP_NAME", "newGroup");
 
@@ -117,8 +107,7 @@ public class CreateRecordServiceTest extends TestBase {
 		var output = new GenericParam();
 		var service = new CreateRecordService();
 		input.setDb(getDb());
-		input.putString("requestKind", "GET");
-		input.putString("requestUri", "/jl/service/tableDataMainte/newRecord.html");
+		input.putString("accountId", "data_loader");
 		input.putString("tableName", "MGNRGRP");
 		input.putString("GNR_GRP_NAME", "newGroup");
 
@@ -140,8 +129,7 @@ public class CreateRecordServiceTest extends TestBase {
 		var output = new GenericParam();
 		var service = new CreateRecordService();
 		input.setDb(getDb());
-		input.putString("requestKind", "GET");
-		input.putString("requestUri", "/jl/service/tableDataMainte/newRecord.html");
+		input.putString("accountId", "data_loader");
 		input.putString("tableName", "MVIEWDEF");
 		input.putString("TABLE_NAME", "TNEWTBL1");
 		input.putString("FIELD_NAME", "NEW_FIELD_1");
@@ -173,8 +161,7 @@ public class CreateRecordServiceTest extends TestBase {
 		var output = new GenericParam();
 		var service = new CreateRecordService();
 		input.setDb(getDb());
-		input.putString("requestKind", "GET");
-		input.putString("requestUri", "/jl/service/tableDataMainte/newRecord.html");
+		input.putString("accountId", "data_loader");
 		input.putString("tableName", "TMAIL");
 		input.putString("MAIL_FROM", "mailFrom");
 
@@ -182,6 +169,29 @@ public class CreateRecordServiceTest extends TestBase {
 		assertEquals("TMAIL", output.getString("tableName"));
 		assertEquals("1", output.getString("updateCnt"));
 		var recordList = input.getDb().select("SELECT * FROM TMAIL WHERE MAIL_FROM = 'mailFrom'");
+		assertEquals(1, recordList.size());
+
+		// DB更新をロールバックする
+		input.getDb().rollback();
+	}
+
+	@Test
+	void test07() throws SQLException {
+
+		// カバレッジ(規則的採番要求)
+		var input = new GenericParam();
+		var output = new GenericParam();
+		var service = new CreateRecordService();
+		input.setDb(getDb());
+		input.putString("accountId", "data_loader");
+		input.putString("tableName", "MGNRGRP");
+		input.putString("requireRuledNumber", "true");
+		input.putString("GNR_GRP_NAME", "newGroup");
+
+		service.doService(input, output);
+		assertEquals("MGNRGRP", output.getString("tableName"));
+		assertEquals("1", output.getString("updateCnt"));
+		var recordList = input.getDb().select("SELECT * FROM MGNRGRP WHERE GNR_GRP_NAME = 'newGroup'");
 		assertEquals(1, recordList.size());
 
 		// DB更新をロールバックする

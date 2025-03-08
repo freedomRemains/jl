@@ -28,8 +28,6 @@ public class GetRelatedRecordService implements ServiceInterface {
 		// 必要なパラメータが入力されていなければエラーとする
 		InputCheckUtil inputCheckUtil = new InputCheckUtil();
 		inputCheckUtil.checkDb(input);
-		inputCheckUtil.checkParam(input, "requestKind");
-		inputCheckUtil.checkParam(input, "requestUri");
 		inputCheckUtil.checkParam(input, "tableName");
 		inputCheckUtil.checkParam(input, "recordId");
 

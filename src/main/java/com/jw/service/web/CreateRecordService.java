@@ -15,6 +15,7 @@ import com.jc.db.DbInterface;
 import com.jc.exception.ApplicationInternalException;
 import com.jc.param.GenericParam;
 import com.jc.service.ServiceInterface;
+import com.jc.util.Cu;
 import com.jc.util.InputCheckUtil;
 import com.jc.util.LogUtil;
 import com.jc.util.Mu;
@@ -30,8 +31,7 @@ public class CreateRecordService implements ServiceInterface {
 		// 必要なパラメータが入力されていなければエラーとする
 		InputCheckUtil inputCheckUtil = new InputCheckUtil();
 		inputCheckUtil.checkDb(input);
-		inputCheckUtil.checkParam(input, "requestKind");
-		inputCheckUtil.checkParam(input, "requestUri");
+		inputCheckUtil.checkParam(input, "accountId");
 		inputCheckUtil.checkParam(input, "tableName");
 
 		try {
@@ -46,17 +46,18 @@ public class CreateRecordService implements ServiceInterface {
 	private void doCreateRecord(GenericParam input, GenericParam output) throws Exception {
 
 		// 入力パラメータ中の除外対象文字列を定義する
-		String tableName = input.getString("tableName");
 		String accountId = input.getString("accountId");
+		String tableName = input.getString("tableName");
 		String[] excludes = new String[] {"tableName", "recordId", "accountId", "requestKind",
-				"requestUri", "scriptId", "sessionId", "errMsgKey"};
+				"requestUri", "scriptId", "sessionId", "errMsgKey", "requireRuledNumber"};
 		var excludeList = Arrays.asList(excludes);
 
 		// テーブル定義を取得する
 		var tableDef = getTableDef(input.getDb(), tableName);
 
 		// 入力パラメータにサロゲートキー(tableName + "_ID")を追加する
-		input.putString(tableName + "_ID", getNextId(input.getDb(), tableName));
+		boolean requireRuledNumber = Cu.isNotEmpty(input.getString("requireRuledNumber")) ? true : false;
+		input.putString(tableName + "_ID", getNextId(input.getDb(), tableName, requireRuledNumber));
 
 		// DBレコード作成のSQLを生成する
 		StringBuilder sql = new StringBuilder(getInsertColumnsString(
@@ -87,7 +88,7 @@ public class CreateRecordService implements ServiceInterface {
 		return db.select(sql, paramList);
 	}
 
-	private String getNextId(DbInterface db, String tableName) throws SQLException {
+	private String getNextId(DbInterface db, String tableName, boolean requireRuledNumber) throws SQLException {
 
 		// サロゲートキー(tableName + "_ID")の最大値を取得する
 		var recordList = db.select("SELECT MAX(" + tableName + "_ID) FROM " + tableName);
@@ -95,7 +96,11 @@ public class CreateRecordService implements ServiceInterface {
 			return "1";
 		}
 		int maxId = Integer.parseInt(recordList.get(0).get("MAX(" + tableName + "_ID)"));
-		return Integer.toString(maxId + 1);
+		if (requireRuledNumber) {
+			return Integer.toString((maxId / 100 * 100) + 101);
+		} else {
+			return Integer.toString(maxId + 1);
+		}
 	}
 
 	private String getInsertColumnsString(GenericParam input, String tableName, List<String> excludeList,

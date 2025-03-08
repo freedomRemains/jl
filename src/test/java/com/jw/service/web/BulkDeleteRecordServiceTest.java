@@ -42,22 +42,6 @@ public class BulkDeleteRecordServiceTest extends TestBase {
 			service.doService(input, output);
 			fail();
 		} catch (BusinessRuleViolationException e) {
-			assertEquals(new Mu().msg("msg.common.noParam", "requestKind"), e.getLocalizedMessage());
-		}
-
-		try {
-			input.putString("requestKind", "GET");
-			service.doService(input, output);
-			fail();
-		} catch (BusinessRuleViolationException e) {
-			assertEquals(new Mu().msg("msg.common.noParam", "requestUri"), e.getLocalizedMessage());
-		}
-
-		try {
-			input.putString("requestUri", "/jl/service/top.html");
-			service.doService(input, output);
-			fail();
-		} catch (BusinessRuleViolationException e) {
 			assertEquals(new Mu().msg("msg.common.noParam", "tableName"), e.getLocalizedMessage());
 		}
 	}
@@ -70,8 +54,6 @@ public class BulkDeleteRecordServiceTest extends TestBase {
 		var output = new GenericParam();
 		var service = new BulkDeleteRecordService();
 		input.setDb(getDb());
-		input.putString("requestKind", "GET");
-		input.putString("requestUri", "/jl/service/tableDataMainte/deleteRecord.html");
 		input.putString("tableName", "MVIEWDEF");
 		input.putString("1000018", "on");
 		input.putString("1000020", "on");
@@ -95,8 +77,6 @@ public class BulkDeleteRecordServiceTest extends TestBase {
 		var output = new GenericParam();
 		var service = new BulkDeleteRecordService();
 		input.setDb(getDb());
-		input.putString("requestKind", "GET");
-		input.putString("requestUri", "/jl/service/tableDataMainte/deleteRecord.html");
 		input.putString("tableName", "NOTEXISTTABLE");
 		input.putString("1000018", "on");
 

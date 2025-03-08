@@ -36,4 +36,12 @@ public class ErrMsgUtilTest extends TestBase {
 		String errMsgKey = new ErrMsgUtil().getErrMsgKey(getDb(), "dummySessionId", "1000001", "dummmy");
 		assertEquals("0", errMsgKey);
 	}
+
+	@Test
+	void test03() throws Exception {
+
+		// カバレッジ(SQLException)
+		String errMsgKey = new ErrMsgUtil().getErrMsgKeyByMsg(getDb(), "dummySessionId", "dummyAccountId", "dummmy");
+		assertEquals("0", errMsgKey);
+	}
 }
