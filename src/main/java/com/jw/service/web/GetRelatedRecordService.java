@@ -142,7 +142,7 @@ public class GetRelatedRecordService implements ServiceInterface {
 		if (Cu.isEmpty(tableDefList.get(0).get("DESC_FIELD"))) {
 
 			// 組み合わせテーブルとみなし、1つ先のテーブルまで追跡する
-			traceforeignTable(output, db, targetTableName, recordId, relatedTableName, tableDefList);
+			traceForeignTable(output, db, targetTableName, recordId, relatedTableName, tableDefList);
 
 		} else {
 
@@ -151,7 +151,7 @@ public class GetRelatedRecordService implements ServiceInterface {
 		}
 	}
 
-	private void traceforeignTable(GenericParam output, DbInterface db, String targetTableName,
+	private void traceForeignTable(GenericParam output, DbInterface db, String targetTableName,
 			String recordId, String relatedTableName,
 			ArrayList<LinkedHashMap<String, String>> tableDefList) throws SQLException {
 
@@ -159,7 +159,7 @@ public class GetRelatedRecordService implements ServiceInterface {
 		var relatedTableList = output.getRecordList("relatedTableList");
 
 		// DB定義から読み取れる全ての外部テーブルを処理するまでループ
-		for (String foreignTableName : getforeignTableNameList(tableDefList, targetTableName)) {
+		for (String foreignTableName : getForeignTableNameList(tableDefList, targetTableName)) {
 
 			// 外部テーブルの定義を取得する
 			var foreignTableDefList = getTableDefList(db, foreignTableName);
@@ -186,7 +186,7 @@ public class GetRelatedRecordService implements ServiceInterface {
 		}
 	}
 
-	private List<String> getforeignTableNameList(ArrayList<LinkedHashMap<String, String>> tableDefList,
+	private List<String> getForeignTableNameList(ArrayList<LinkedHashMap<String, String>> tableDefList,
 			String targetTableName) {
 
 		// DB定義を全て処理するまでループ
@@ -260,6 +260,12 @@ public class GetRelatedRecordService implements ServiceInterface {
 			ArrayList<LinkedHashMap<String, String>> foreignTableDefList,
 			ArrayList<LinkedHashMap<String, String>> relatedTableRecordList) throws SQLException {
 
+		// 関連レコードリストが存在しない場合は、空のレコードリストを呼び出し側に返却する
+		if (relatedTableRecordList.isEmpty()) {
+			return new ArrayList<LinkedHashMap<String, String>>();
+		}
+
+		//　外部テーブルからデータを取得するためのSELECT文を作成する
 		String foreignTableName = foreignTableDefList.get(0).get("TABLE_NAME");
 		String primaryKeyFieldName = foreignTableDefList.get(0).get("FIELD_NAME");
 		String descFieldName = foreignTableDefList.get(0).get("DESC_FIELD");
@@ -276,6 +282,8 @@ public class GetRelatedRecordService implements ServiceInterface {
 		}
 		sql.append(part);
 		sql.append(")");
+
+		// ログを記録した上でSQLを実行し、結果を呼び出し側に返却する
 		logger.info(new Mu().msg("msg.common.sql", sql));
 		return db.select(sql.toString());
 	}

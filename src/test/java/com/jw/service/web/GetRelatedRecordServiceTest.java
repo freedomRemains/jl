@@ -153,4 +153,19 @@ public class GetRelatedRecordServiceTest extends TestBase {
 		// DB更新をロールバックする
 		input.getDb().rollback();
 	}
+
+	@Test
+	void test08() throws SQLException {
+
+		// カバレッジ(関連テーブルレコードなし)
+		var input = new GenericParam();
+		var output = new GenericParam();
+		var service = new GetRelatedRecordService();
+		input.setDb(getDb());
+		input.putString("tableName", "MHTMLPAGE");
+		input.putString("recordId", "1000001");
+
+		service.doService(input, output);
+		assertTrue(output.getRecordList("foreignTableRecordList_MREQUIREROLE").isEmpty());
+	}
 }
