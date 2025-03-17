@@ -8,6 +8,7 @@
                    var deleteRecordUri = ((ArrayList<LinkedHashMap<String, String>>) request.getAttribute("deleteRecordUri")).get(0).get("URI_PATTERN");
                    var editRecordUri = ((ArrayList<LinkedHashMap<String, String>>) request.getAttribute("editRecordUri")).get(0).get("URI_PATTERN");
                    var recordRefUri = ((ArrayList<LinkedHashMap<String, String>>) request.getAttribute("recordRefUri")).get(0).get("URI_PATTERN");
+                   var recordListUri = ((ArrayList<LinkedHashMap<String, String>>) request.getAttribute("recordListUri")).get(0).get("URI_PATTERN");
                    var tableName = tableDefList.get(0).get("TABLE_NAME");
                    var limitList = ((ArrayList<LinkedHashMap<String, String>>) request.getAttribute("limitList"));
                    String currentLimit = (String) request.getAttribute("currentLimit");
@@ -101,20 +102,20 @@
                 <div class="littlePadding">
                   <% if (lastPageInt > 1) { %>
                     <% if (currentPageInt > 1) { %>
-                      <a href="/jl/service/tableDataMainte.html?tableName=<%=tableName%>&limit=<%=currentLimit%>&offset=0">最初のページ(1)</a>　
+                      <a href="<%=recordListUri%>?tableName=<%=tableName%>&limit=<%=currentLimit%>&offset=0">最初のページ(1)</a>　
                     <% } %>
                     <% if (prevPageInt > 1) { %>
-                      <a href="/jl/service/tableDataMainte.html?tableName=<%=tableName%>&limit=<%=currentLimit%>&offset=<%=prevPageOffset%>">前のページ(<%=prevPage%>)</a>　
+                      <a href="<%=recordListUri%>?tableName=<%=tableName%>&limit=<%=currentLimit%>&offset=<%=prevPageOffset%>">前のページ(<%=prevPage%>)</a>　
                     <% } %>
                     <% if (nextPageInt < lastPageInt) { %>
-                      <a href="/jl/service/tableDataMainte.html?tableName=<%=tableName%>&limit=<%=currentLimit%>&offset=<%=nextPageOffset%>">次のページ(<%=nextPage%>)</a>　
+                      <a href="<%=recordListUri%>?tableName=<%=tableName%>&limit=<%=currentLimit%>&offset=<%=nextPageOffset%>">次のページ(<%=nextPage%>)</a>　
                     <% } %>
                     <% if (currentPageInt < lastPageInt) { %>
-                      <a href="/jl/service/tableDataMainte.html?tableName=<%=tableName%>&limit=<%=currentLimit%>&offset=<%=lastPageOffset%>">最後のページ(<%=lastPage%>)</a>　
+                      <a href="<%=recordListUri%>?tableName=<%=tableName%>&limit=<%=currentLimit%>&offset=<%=lastPageOffset%>">最後のページ(<%=lastPage%>)</a>　
                     <% } %>
                   <% } %>
                   <label><span class="genericLabel"><%=currentPage%>／<%=lastPage%>　表示件数</span></label>
-                  <select id="selectLimit" name="limit" onchange="changeLimit('/jl/service/tableDataMainte.html?tableName=<%=tableName%>&limit=', '&offset=<%=currentPageOffset%>')">
+                  <select id="selectLimit" name="limit" onchange="changeLimit('<%=recordListUri%>?tableName=<%=tableName%>&limit=', '&offset=<%=currentPageOffset%>')">
                     <% for (LinkedHashMap<String, String> limitInList : limitList) {
                          String limitNum = limitInList.get("GNR_VAL");
                          if (limitNum.equals(currentLimit)) { %>
