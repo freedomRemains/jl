@@ -53,7 +53,7 @@ public class ErrMsgUtil {
 
 			// エラーメッセージテーブルにレコードを追加する
 			StringBuilder sql = new StringBuilder();
-			sql.append("INSERT INTO TERRMSG(TERRMSG_ID, SESSION_ID, TACCOUNT_ID, ERR_MSG, VERSION, DEL_FLG, CREATE_USER, CREATE_DATE, UPDATE_USER, UPDATE_DATE) VALUES(");
+			sql.append("INSERT INTO TERRMSG(TERRMSG_ID, SESSION_ID, TACCOUNT_ID, ERR_MSG, VERSION, IS_DELETED, CREATED_BY, CREATED_AT, UPDATED_BY, UPDATED_AT) VALUES(");
 			sql.append(Integer.toString(maxErrMsgId) + ", '" + sessionId + "', " + accountId + ", '" + errMsg + "', 1, 0, '" + accountId + "', '" + currentDate + "', '" + accountId + "', '" + currentDate + "')");
 			db.update(sql.toString());
 

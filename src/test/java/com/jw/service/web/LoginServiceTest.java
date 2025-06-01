@@ -120,7 +120,7 @@ public class LoginServiceTest extends TestBase {
 		// リクエストを受けられるよう、DBレコードを更新する
 		String sql = """
 				INSERT INTO TACCOUNT(
-					TACCOUNT_ID, ACCOUNT_NAME, MAIL_ADDRESS, PASSWORD, VERSION, DEL_FLG
+					TACCOUNT_ID, ACCOUNT_NAME, MAIL_ADDRESS, PASSWORD, VERSION, IS_DELETED
 				) VALUES(
 					'1000501', 'マスタ2', 'master@account.com', 'password', 1, 0
 				)

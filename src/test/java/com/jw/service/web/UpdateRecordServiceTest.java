@@ -127,7 +127,7 @@ public class UpdateRecordServiceTest extends TestBase {
 	@Test
 	void test05() throws SQLException {
 
-		// カバレッジ(UPDATE_DATEカラムあり)
+		// カバレッジ(UPDATED_ATカラムあり)
 		var input = new GenericParam();
 		var output = new GenericParam();
 		var service = new UpdateRecordService();
@@ -135,7 +135,7 @@ public class UpdateRecordServiceTest extends TestBase {
 		input.putString("tableName", "MGNRGRP");
 		input.putString("recordId", "1000001");
 		input.putString("GNR_GRP_NAME", "システムプロパティ3");
-		input.putString("UPDATE_DATE", "2021-07-12 00:00:00");
+		input.putString("UPDATED_AT", "2021-07-12 00:00:00");
 
 		service.doService(input, output);
 		assertEquals("MGNRGRP", output.getString("tableName"));
@@ -151,7 +151,7 @@ public class UpdateRecordServiceTest extends TestBase {
 	@Test
 	void test06() throws SQLException {
 
-		// カバレッジ(UPDATE_USERカラムあり)
+		// カバレッジ(UPDATED_BYカラムあり)
 		var input = new GenericParam();
 		var output = new GenericParam();
 		var service = new UpdateRecordService();
@@ -160,7 +160,7 @@ public class UpdateRecordServiceTest extends TestBase {
 		input.putString("recordId", "1000001");
 		input.putString("accountId", "dbadmin");
 		input.putString("GNR_GRP_NAME", "システムプロパティ4");
-		input.putString("UPDATE_USER", "dbadmin");
+		input.putString("UPDATED_BY", "dbadmin");
 
 		service.doService(input, output);
 		assertEquals("MGNRGRP", output.getString("tableName"));
@@ -168,7 +168,7 @@ public class UpdateRecordServiceTest extends TestBase {
 		assertEquals("1", output.getString("updateCnt"));
 		var recordList = input.getDb().select("SELECT * FROM MGNRGRP WHERE MGNRGRP_ID = 1000001");
 		assertEquals("システムプロパティ4", recordList.get(0).get("GNR_GRP_NAME"));
-		assertEquals("dbadmin", recordList.get(0).get("UPDATE_USER"));
+		assertEquals("dbadmin", recordList.get(0).get("UPDATED_BY"));
 
 		// DB更新をロールバックする
 		input.getDb().rollback();

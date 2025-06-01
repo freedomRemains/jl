@@ -94,15 +94,15 @@ public class UpdateRecordService implements ServiceInterface {
 				version = version + 1;
 				paramList.add(version.toString());
 
-			} else if ("UPDATE_DATE".equals(key)) {
+			} else if ("UPDATED_AT".equals(key)) {
 
-				// UPDATE_DATEの場合は、現在日時をパラメータに設定する
+				// UPDATED_ATの場合は、現在日時をパラメータに設定する
 				hasUpdateDate = true;
 				paramList.add(dateString);
 
-			} else if ("UPDATE_USER".equals(key)) {
+			} else if ("UPDATED_BY".equals(key)) {
 
-				// UPDATE_USERの場合は、アカウント名をパラメータに設定する
+				// UPDATED_BYの場合は、アカウント名をパラメータに設定する
 				paramList.add(accountId);
 
 			} else {
@@ -118,8 +118,8 @@ public class UpdateRecordService implements ServiceInterface {
 			sql.append(" AND VERSION = ?");
 			paramList.add(input.getString("VERSION"));
 		} else if (hasUpdateDate) {
-			sql.append(" AND UPDATE_DATE = ?");
-			paramList.add(input.getString("UPDATE_DATE"));
+			sql.append(" AND UPDATED_AT = ?");
+			paramList.add(input.getString("UPDATED_AT"));
 		}
 
 		// SQLをログに記録する

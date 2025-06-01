@@ -66,8 +66,8 @@ public class GetAccountService implements ServiceInterface {
 		String sql = """
 				SELECT
 					A.TACCOUNT_ID, A.ACCOUNT_NAME, A.MAIL_ADDRESS,
-					A.VERSION, A.DEL_FLG, A.CREATE_USER, A.CREATE_DATE,
-					A.UPDATE_USER, A.UPDATE_DATE
+					A.VERSION, A.IS_DELETED, A.CREATED_BY, A.CREATED_AT,
+					A.UPDATED_BY, A.UPDATED_AT
 				FROM TACCOUNT A
 				WHERE A.TACCOUNT_ID = ?
 				""";
