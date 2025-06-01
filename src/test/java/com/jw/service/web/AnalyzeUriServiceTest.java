@@ -149,7 +149,7 @@ public class AnalyzeUriServiceTest extends TestBase {
 					TSCR_ID_POST, RESP_KIND_POST, DESTINATION_POST,
 					TSCR_ID_PUT, RESP_KIND_PUT, DESTINATION_PUT,
 					TSCR_ID_DELETE, RESP_KIND_DELETE, DESTINATION_DELETE,
-					VERSION, DEL_FLG
+					VERSION, IS_DELETED
 				) VALUES(
 					'TOP', 1000001, 1100001, 'forward', '10000_contents.jsp',
 					1100001, 'forward', '10000_contents.jsp',

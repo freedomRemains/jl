@@ -197,11 +197,11 @@ public class GetRelatedRecordService implements ServiceInterface {
 			// 主キーとVERSION以降のカラムは処理しない
 			if (tableDef.get("FIELD_NAME").equals(tableName + "_ID")
 					|| "VERSION".equals(tableDef.get("FIELD_NAME"))
-					|| "DEL_FLG".equals(tableDef.get("FIELD_NAME"))
-					|| "CREATE_USER".equals(tableDef.get("FIELD_NAME"))
-					|| "CREATE_DATE".equals(tableDef.get("FIELD_NAME"))
-					|| "UPDATE_USER".equals(tableDef.get("FIELD_NAME"))
-					|| "UPDATE_DATE".equals(tableDef.get("FIELD_NAME"))) {
+					|| "IS_DELETED".equals(tableDef.get("FIELD_NAME"))
+					|| "CREATED_BY".equals(tableDef.get("FIELD_NAME"))
+					|| "CREATED_AT".equals(tableDef.get("FIELD_NAME"))
+					|| "UPDATED_BY".equals(tableDef.get("FIELD_NAME"))
+					|| "UPDATED_AT".equals(tableDef.get("FIELD_NAME"))) {
 				continue;
 			}
 

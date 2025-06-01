@@ -127,20 +127,20 @@ public class CreateRecordService implements ServiceInterface {
 		if (hasColumn(tableDef, "VERSION")) {
 			parts.append(", VERSION");
 		}
-		if (hasColumn(tableDef, "DEL_FLG")) {
-			parts.append(", DEL_FLG");
+		if (hasColumn(tableDef, "IS_DELETED")) {
+			parts.append(", IS_DELETED");
 		}
-		if (hasColumn(tableDef, "CREATE_USER")) {
-			parts.append(", CREATE_USER");
+		if (hasColumn(tableDef, "CREATED_BY")) {
+			parts.append(", CREATED_BY");
 		}
-		if (hasColumn(tableDef, "CREATE_DATE")) {
-			parts.append(", CREATE_DATE");
+		if (hasColumn(tableDef, "CREATED_AT")) {
+			parts.append(", CREATED_AT");
 		}
-		if (hasColumn(tableDef, "UPDATE_USER")) {
-			parts.append(", UPDATE_USER");
+		if (hasColumn(tableDef, "UPDATED_BY")) {
+			parts.append(", UPDATED_BY");
 		}
-		if (hasColumn(tableDef, "UPDATE_DATE")) {
-			parts.append(", UPDATE_DATE");
+		if (hasColumn(tableDef, "UPDATED_AT")) {
+			parts.append(", UPDATED_AT");
 		}
 
 		// 生成したINSERT対象カラムを記述したSQLの部分文字列を呼び出し側に返却する
@@ -189,23 +189,23 @@ public class CreateRecordService implements ServiceInterface {
 			parts.append(", ?");
 			paramList.add("1");
 		}
-		if (hasColumn(tableDef, "DEL_FLG")) {
+		if (hasColumn(tableDef, "IS_DELETED")) {
 			parts.append(", ?");
 			paramList.add("0");
 		}
-		if (hasColumn(tableDef, "CREATE_USER")) {
+		if (hasColumn(tableDef, "CREATED_BY")) {
 			parts.append(", ?");
 			paramList.add(accountId);
 		}
-		if (hasColumn(tableDef, "CREATE_DATE")) {
+		if (hasColumn(tableDef, "CREATED_AT")) {
 			parts.append(", ?");
 			paramList.add(dateString);
 		}
-		if (hasColumn(tableDef, "UPDATE_USER")) {
+		if (hasColumn(tableDef, "UPDATED_BY")) {
 			parts.append(", ?");
 			paramList.add(accountId);
 		}
-		if (hasColumn(tableDef, "UPDATE_DATE")) {
+		if (hasColumn(tableDef, "UPDATED_AT")) {
 			parts.append(", ?");
 			paramList.add(dateString);
 		}
