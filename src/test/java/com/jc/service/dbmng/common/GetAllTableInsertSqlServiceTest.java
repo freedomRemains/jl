@@ -55,7 +55,7 @@ public class GetAllTableInsertSqlServiceTest extends TestBase {
 		// 全てのテーブルについて、SELECTのSQLを出力する
 		createTableSelectSql(dbName, "MGNRGRP");
 		createTableSelectSql(dbName, "MGNRKEYVAL");
-		createTableSelectSql(dbName, "MTBLDEF");
+		createTableSelectSql(dbName, "TBLDEF");
 		createTableSelectSql(dbName, "TACCOUNT");
 		createTableSelectSql(dbName, "TMAIL");
 		createTableSelectSql(dbName, "TSCR");
@@ -88,7 +88,7 @@ public class GetAllTableInsertSqlServiceTest extends TestBase {
 		// 全てのテーブルについて、データのTSVファイルを出力する
 		createTableDataFile(dbName, "MGNRGRP");
 		createTableDataFile(dbName, "MGNRKEYVAL");
-		createTableDataFile(dbName, "MTBLDEF");
+		createTableDataFile(dbName, "TBLDEF");
 		createTableDataFile(dbName, "TACCOUNT");
 		createTableDataFile(dbName, "TMAIL");
 		createTableDataFile(dbName, "TSCR");

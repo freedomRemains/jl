@@ -188,7 +188,7 @@ public class GetTableDefServiceTest extends TestBase {
 	private void doTest04(String dbName) {
 
 		// DB定義取得用SQLを生成する
-		String getTableDefSql = "SELECT * FROM MTBLDEF WHERE TABLE_NAME = 'NOT_EXIST_TABLE'";
+		String getTableDefSql = "SELECT * FROM TBLDEF WHERE TABLE_NAME = 'NOT_EXIST_TABLE'";
 
 		// DBの準備を行う
 		prepareDb(dbName);

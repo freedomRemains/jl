@@ -137,7 +137,7 @@ public class CreateHtmlServiceTest extends TestBase {
 		input.setDb(getDb());
 		input.putString("requestKind", "GET");
 		input.putString("requestUri", "/jl/service/tableDataMainte.html");
-		input.putString("tableName", "MTBLDEF");
+		input.putString("tableName", "TBLDEF");
 		input.putString("limit", "10");
 		input.putString("offset", "10");
 

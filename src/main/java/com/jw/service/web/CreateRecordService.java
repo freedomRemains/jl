@@ -82,7 +82,7 @@ public class CreateRecordService implements ServiceInterface {
 	private ArrayList<LinkedHashMap<String, String>> getTableDef(DbInterface db, String tableName) throws SQLException {
 
 		// テーブル定義を取得する
-		String sql = "SELECT TABLE_NAME, FIELD_NAME FROM MTBLDEF WHERE TABLE_NAME = ? ORDER BY MTBLDEF_ID";
+		String sql = "SELECT TABLE_NAME, FIELD_NAME FROM TBLDEF WHERE TABLE_NAME = ? ORDER BY TBLDEF_ID";
 		var paramList = new ArrayList<String>();
 		paramList.add(tableName);
 		return db.select(sql, paramList);
