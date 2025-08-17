@@ -30,13 +30,13 @@ public class AuthUtilTest extends TestBase {
 
 		// 存在するアカウントID
 		var authList = new AuthUtil().getAuthByAccountId(getDb(), "1000201");
-		assertEquals("1000001", authList.get(0).get("MHTMLPARTS_ID"));
+		assertEquals("1000001", authList.get(0).get("HTML_PARTS_ID"));
 		assertEquals("read", authList.get(0).get("AUTH_KIND"));
-		assertEquals("1000101", authList.get(1).get("MHTMLPARTS_ID"));
+		assertEquals("1000101", authList.get(1).get("HTML_PARTS_ID"));
 		assertEquals("read", authList.get(1).get("AUTH_KIND"));
-		assertEquals("1000201", authList.get(2).get("MHTMLPARTS_ID"));
+		assertEquals("1000201", authList.get(2).get("HTML_PARTS_ID"));
 		assertEquals("edit", authList.get(2).get("AUTH_KIND"));
-		assertEquals("1000701", authList.get(3).get("MHTMLPARTS_ID"));
+		assertEquals("1000701", authList.get(3).get("HTML_PARTS_ID"));
 		assertEquals("read", authList.get(3).get("AUTH_KIND"));
 	}
 
@@ -92,7 +92,7 @@ public class AuthUtilTest extends TestBase {
 
 		// 存在するアカウントID
 		var roleList = new AuthUtil().getRoleByAccountId(getDb(), "1000201");
-		assertEquals("1000201", roleList.get(0).get("MROLE_ID"));
+		assertEquals("1000201", roleList.get(0).get("APROLE_ID"));
 	}
 
 	@Test

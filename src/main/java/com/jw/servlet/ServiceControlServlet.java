@@ -297,6 +297,6 @@ public class ServiceControlServlet extends HttpServlet {
 		}
 
 		// セッションにアカウントIDを設定する
-		session.setAttribute("accountId", account.get(0).get("TACCOUNT_ID"));
+		session.setAttribute("accountId", account.get(0).get("ACCNT_ID"));
 	}
 }

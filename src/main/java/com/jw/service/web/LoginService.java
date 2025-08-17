@@ -47,10 +47,10 @@ public class LoginService implements ServiceInterface {
 		// ユーザが存在しない場合はエラーとする
 		String sql = """
 				SELECT
-					A.TACCOUNT_ID, A.ACCOUNT_NAME, A.MAIL_ADDRESS, A.PASSWORD,
+					A.ACCNT_ID, A.ACCOUNT_NAME, A.MAIL_ADDRESS, A.PASSWORD,
 					A.VERSION, A.IS_DELETED, A.CREATED_BY, A.CREATED_AT,
 					A.UPDATED_BY, A.UPDATED_AT
-				FROM TACCOUNT A
+				FROM ACCNT A
 				WHERE A.MAIL_ADDRESS = ?
 				""";
 		var paramList = new ArrayList<String>();
@@ -66,6 +66,6 @@ public class LoginService implements ServiceInterface {
 		}
 
 		// 入力パラメータに上書きでアカウントIDを設定する
-		input.putString("accountId", recordList.get(0).get("TACCOUNT_ID"));
+		input.putString("accountId", recordList.get(0).get("ACCNT_ID"));
 	}
 }

@@ -83,9 +83,9 @@ public class CreateHtmlServiceTest extends TestBase {
 
 		// リクエストを受けられるよう、DBレコードを更新する
 		String sql = """
-				UPDATE TPARTSITEM SET
+				UPDATE PARTS_ITEM SET
 					ITEM_QUERY = 'SELECT ERR_SQL FROM NOT_EXIST_TABLE'
-					WHERE TPARTSITEM_ID = 1000001
+					WHERE PARTS_ITEM_ID = 1000001
 				""";
 		getDb().update(sql);
 
@@ -116,9 +116,9 @@ public class CreateHtmlServiceTest extends TestBase {
 
 		// リクエストを受けられるよう、DBレコードを更新する
 		String sql = """
-				UPDATE TPARTSITEM SET
+				UPDATE PARTS_ITEM SET
 					ITEM_QUERY = ''
-					WHERE TPARTSITEM_ID = 1000001
+					WHERE PARTS_ITEM_ID = 1000001
 				""";
 		getDb().update(sql);
 
@@ -137,7 +137,7 @@ public class CreateHtmlServiceTest extends TestBase {
 		input.setDb(getDb());
 		input.putString("requestKind", "GET");
 		input.putString("requestUri", "/jl/service/tableDataMainte.html");
-		input.putString("tableName", "TBLDEF");
+		input.putString("tableName", "TBL_DEF");
 		input.putString("limit", "10");
 		input.putString("offset", "10");
 

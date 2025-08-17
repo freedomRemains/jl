@@ -46,7 +46,7 @@ public class GetRelatedRecordServiceTest extends TestBase {
 		}
 
 		try {
-			input.putString("tableName", "MHTMLPAGE");
+			input.putString("tableName", "HTML_PAGE");
 			service.doService(input, output);
 			fail();
 		} catch (BusinessRuleViolationException e) {
@@ -62,12 +62,12 @@ public class GetRelatedRecordServiceTest extends TestBase {
 		var output = new GenericParam();
 		var service = new GetRelatedRecordService();
 		input.setDb(getDb());
-		input.putString("tableName", "MHTMLPAGE");
+		input.putString("tableName", "HTML_PAGE");
 		input.putString("recordId", "1000301");
 
 		service.doService(input, output);
-		assertEquals("TPARTSINPAGE", output.getRecordList("relatedTableList").get(0).get("TABLE_NAME"));
-		assertEquals("MREQUIREROLE", output.getRecordList("relatedTableList").get(1).get("TABLE_NAME"));
+		assertEquals("PARTS_IN_PAGE", output.getRecordList("relatedTableList").get(0).get("TABLE_NAME"));
+		assertEquals("REQUIRE_APROLE", output.getRecordList("relatedTableList").get(1).get("TABLE_NAME"));
 	}
 
 	@Test
@@ -78,11 +78,11 @@ public class GetRelatedRecordServiceTest extends TestBase {
 		var output = new GenericParam();
 		var service = new GetRelatedRecordService();
 		input.setDb(getDb());
-		input.putString("tableName", "MGNRGRP");
+		input.putString("tableName", "GNR_GRP");
 		input.putString("recordId", "1000001");
 
 		service.doService(input, output);
-		assertEquals("MGNRKEYVAL", output.getRecordList("relatedTableList").get(0).get("TABLE_NAME"));
+		assertEquals("GNR_KEY_VAL", output.getRecordList("relatedTableList").get(0).get("TABLE_NAME"));
 	}
 
 	@Test
@@ -112,7 +112,7 @@ public class GetRelatedRecordServiceTest extends TestBase {
 		var output = new GenericParam();
 		var service = new GetRelatedRecordService();
 		input.setDb(getDb());
-		input.putString("tableName", "MVIEWDEF");
+		input.putString("tableName", "VIEW_DEF");
 		input.putString("recordId", "1000001");
 
 		service.doService(input, output);
@@ -127,11 +127,11 @@ public class GetRelatedRecordServiceTest extends TestBase {
 		var output = new GenericParam();
 		var service = new GetRelatedRecordService();
 		input.setDb(getDb());
-		input.putString("tableName", "TSCR");
+		input.putString("tableName", "SCR");
 		input.putString("recordId", "1100301");
 
 		service.doService(input, output);
-		assertEquals("MHTMLPAGE", output.getRecordList("relatedTableList").get(2).get("TABLE_NAME"));
+		assertEquals("HTML_PAGE", output.getRecordList("relatedTableList").get(2).get("TABLE_NAME"));
 	}
 
 	@Test
@@ -142,12 +142,12 @@ public class GetRelatedRecordServiceTest extends TestBase {
 		var output = new GenericParam();
 		var service = new GetRelatedRecordService();
 		input.setDb(getDb());
-		input.putString("tableName", "MHTMLPAGE");
+		input.putString("tableName", "HTML_PAGE");
 		input.putString("recordId", "9999999");
 
 		service.doService(input, output);
 		assertEquals("redirect", output.getString("respKind"));
-		assertEquals("tableDataMainte.html?tableName=MHTMLPAGE&errMsgKey=1",
+		assertEquals("tableDataMainte.html?tableName=HTML_PAGE&errMsgKey=1",
 				output.getString("destination"));
 
 		// DB更新をロールバックする
@@ -162,10 +162,10 @@ public class GetRelatedRecordServiceTest extends TestBase {
 		var output = new GenericParam();
 		var service = new GetRelatedRecordService();
 		input.setDb(getDb());
-		input.putString("tableName", "MHTMLPAGE");
+		input.putString("tableName", "HTML_PAGE");
 		input.putString("recordId", "1000001");
 
 		service.doService(input, output);
-		assertTrue(output.getRecordList("foreignTableRecordList_MREQUIREROLE").isEmpty());
+		assertTrue(output.getRecordList("foreignTableRecordList_REQUIRE_APROLE").isEmpty());
 	}
 }

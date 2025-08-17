@@ -37,7 +37,7 @@ public class GetTableDataServiceTest extends TestBase {
 		dbName = new DbPrepareUtil().beforeEach();
 
 		// テーブルデータを取得するために必要なSELECTのSQLを生成する
-		createTableSelectSql("TSCR");
+		createTableSelectSql("SCR");
 	}
 
 	@AfterEach
@@ -53,7 +53,7 @@ public class GetTableDataServiceTest extends TestBase {
 		String dirPath = OUTPUT_PATH + "dbmng/" + dbName;
 		String defPath = "10_dbdef/20_auto_created";
 		String sqlPath = "30_sql/20_auto_created";
-		String tableDefFilePath = OUTPUT_PATH + "dbmng/" + dbName + "/10_dbdef/20_auto_created/TSCR.txt";
+		String tableDefFilePath = OUTPUT_PATH + "dbmng/" + dbName + "/10_dbdef/20_auto_created/SCR.txt";
 
 		// 正常系パターン
 		GenericParam input = new GenericParam();
@@ -128,7 +128,7 @@ public class GetTableDataServiceTest extends TestBase {
 		// 必要なパラメータを準備する
 		String dirPath = OUTPUT_PATH + "dbmng/" + dbName;
 		String sqlPath = "30_sql/20_auto_created";
-		String tableName = "TSCR";
+		String tableName = "SCR";
 
 		// (カバレッジ)存在しない出力先を指定するパターン
 		GenericParam input = new GenericParam();
@@ -154,7 +154,7 @@ public class GetTableDataServiceTest extends TestBase {
 		String dirPath = OUTPUT_PATH + "dbmng/" + dbName;
 		String dataPath = "20_dbdata/20_auto_created";
 		String sqlPath = "30_sql/20_auto_created";
-		String tableName = "TSCR";
+		String tableName = "SCR";
 
 		// 正常系パターン
 		GenericParam input = new GenericParam();
@@ -179,7 +179,7 @@ public class GetTableDataServiceTest extends TestBase {
 		// 必要なパラメータを準備する
 		String dirPath = OUTPUT_PATH + "dbmng/" + dbName;
 		String dataPath = "20_dbdata/20_auto_created";
-		String tableName = "TSCR";
+		String tableName = "SCR";
 
 		// (カバレッジ)存在しないSQLを指定するパターン
 		GenericParam input = new GenericParam();

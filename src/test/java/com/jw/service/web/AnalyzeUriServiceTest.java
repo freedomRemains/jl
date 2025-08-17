@@ -144,11 +144,11 @@ public class AnalyzeUriServiceTest extends TestBase {
 
 		// insertにより2件以上エラーが出るようにする
 		String sql = """
-				INSERT INTO MHTMLPAGE(
-					PAGE_NAME, MURIPATTERN_ID, TSCR_ID_GET, RESP_KIND_GET, DESTINATION_GET,
-					TSCR_ID_POST, RESP_KIND_POST, DESTINATION_POST,
-					TSCR_ID_PUT, RESP_KIND_PUT, DESTINATION_PUT,
-					TSCR_ID_DELETE, RESP_KIND_DELETE, DESTINATION_DELETE,
+				INSERT INTO HTML_PAGE(
+					PAGE_NAME, URI_PATTERN_ID, SCR_ID_GET, RESP_KIND_GET, DESTINATION_GET,
+					SCR_ID_POST, RESP_KIND_POST, DESTINATION_POST,
+					SCR_ID_PUT, RESP_KIND_PUT, DESTINATION_PUT,
+					SCR_ID_DELETE, RESP_KIND_DELETE, DESTINATION_DELETE,
 					VERSION, IS_DELETED
 				) VALUES(
 					'TOP', 1000001, 1100001, 'forward', '10000_contents.jsp',
@@ -186,11 +186,11 @@ public class AnalyzeUriServiceTest extends TestBase {
 
 		// リクエストを受けられるよう、DBレコードを更新する
 		String sql = """
-				UPDATE MHTMLPAGE SET
-					TSCR_ID_POST = 1100001,
+				UPDATE HTML_PAGE SET
+					SCR_ID_POST = 1100001,
 					RESP_KIND_POST = 'forward',
 					DESTINATION_POST = '10000_contents.jsp'
-					WHERE MHTMLPAGE_ID = 1000001
+					WHERE HTML_PAGE_ID = 1000001
 				""";
 		getDb().update(sql);
 
@@ -216,11 +216,11 @@ public class AnalyzeUriServiceTest extends TestBase {
 
 		// リクエストを受けられるよう、DBレコードを更新する
 		String sql = """
-				UPDATE MHTMLPAGE SET
-					TSCR_ID_PUT = 1100001,
+				UPDATE HTML_PAGE SET
+					SCR_ID_PUT = 1100001,
 					RESP_KIND_PUT = 'forward',
 					DESTINATION_PUT = '10000_contents.jsp'
-					WHERE MHTMLPAGE_ID = 1000001
+					WHERE HTML_PAGE_ID = 1000001
 				""";
 		getDb().update(sql);
 
@@ -247,11 +247,11 @@ public class AnalyzeUriServiceTest extends TestBase {
 
 		// リクエストを受けられるよう、DBレコードを更新する
 		String sql = """
-				UPDATE MHTMLPAGE SET
-					TSCR_ID_DELETE = 1100001,
+				UPDATE HTML_PAGE SET
+					SCR_ID_DELETE = 1100001,
 					RESP_KIND_DELETE = 'forward',
 					DESTINATION_DELETE = '10000_contents.jsp'
-					WHERE MHTMLPAGE_ID = 1000001
+					WHERE HTML_PAGE_ID = 1000001
 				""";
 		getDb().update(sql);
 
@@ -278,11 +278,11 @@ public class AnalyzeUriServiceTest extends TestBase {
 
 		// リクエストを受けられるよう、DBレコードを更新する
 		String sql = """
-				UPDATE MHTMLPAGE SET
-					TSCR_ID_GET = 0,
+				UPDATE HTML_PAGE SET
+					SCR_ID_GET = 0,
 					RESP_KIND_DELETE = 'redirect',
 					DESTINATION_DELETE = 'top.html'
-					WHERE MHTMLPAGE_ID = 1000001
+					WHERE HTML_PAGE_ID = 1000001
 				""";
 		getDb().update(sql);
 

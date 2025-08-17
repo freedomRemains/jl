@@ -1,7 +1,7 @@
 <%@ page pageEncoding="UTF-8"%>
 
-            <% if ("1000001".equals(account.get(0).get("TACCOUNT_ID"))) { %>
-              <div class="<%=columnMap.get("MHTMLPARTS_ID")%>">
+            <% if ("1000001".equals(account.get(0).get("ACCNT_ID"))) { %>
+              <div class="<%=columnMap.get("HTML_PARTS_ID")%>">
                 <table>
                   <tbody>
                     <tr>

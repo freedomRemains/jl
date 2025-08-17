@@ -90,7 +90,7 @@ public class GetRelatedRecordService implements ServiceInterface {
 	private ArrayList<LinkedHashMap<String, String>> getTableDefList(
 			DbInterface db, String tableName) throws SQLException {
 
-		String sql = "SELECT * FROM TBLDEF WHERE TABLE_NAME = ?";
+		String sql = "SELECT * FROM TBL_DEF WHERE TABLE_NAME = ?";
 		var paramList = new ArrayList<String>();
 		paramList.add(tableName);
 		return db.select(sql, paramList);
@@ -116,7 +116,7 @@ public class GetRelatedRecordService implements ServiceInterface {
 			DbInterface db, String tableName) throws SQLException {
 
 		// 関連テーブルを取得する
-		String sql = "SELECT * FROM TBLDEF WHERE FOREIGN_TABLE = ?";
+		String sql = "SELECT * FROM TBL_DEF WHERE FOREIGN_TABLE = ?";
 		var paramList = new ArrayList<String>();
 		paramList.add(tableName);
 		var recordList = db.select(sql, paramList);

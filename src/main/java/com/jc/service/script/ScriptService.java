@@ -44,10 +44,10 @@ public class ScriptService implements ServiceInterface {
 		try {
 			// DBからスクリプト定義を取得する
 			String sql = """
-					SELECT A.SCR_NAME, B.TSCRELM_ID, B.SERVICE_NAME, B.ADAPTER, B.PREPARE_INPUT, B.ORD_IN_GRP
-					  FROM TSCR A
-					  INNER JOIN TSCRELM B ON A.TSCR_ID = B.TSCR_ID
-					    AND A.TSCR_ID = #{scriptId}
+					SELECT A.SCR_NAME, B.SCR_ELM_ID, B.SERVICE_NAME, B.ADAPTER, B.PREPARE_INPUT, B.ORD_IN_GRP
+					  FROM SCR A
+					  INNER JOIN SCR_ELM B ON A.SCR_ID = B.SCR_ID
+					    AND A.SCR_ID = #{scriptId}
 					  ORDER BY B.ORD_IN_GRP
 					""";
 			sql = sql.replace("#{scriptId}", input.getString("scriptId"));
@@ -102,10 +102,10 @@ public class ScriptService implements ServiceInterface {
 
 		// DBからスクリプトパラメータを取得する
 		String sql = """
-				SELECT A.SCR_NAME, B.TSCRPRM_ID, B.PARAM_KEY, B.PARAM_VALUE, B.ORD_IN_GRP
-				  FROM TSCR A
-				  INNER JOIN TSCRPRM B ON A.TSCR_ID = B.TSCR_ID
-				    AND A.TSCR_ID = #{scriptId}
+				SELECT A.SCR_NAME, B.SCR_PRM_ID, B.PARAM_KEY, B.PARAM_VALUE, B.ORD_IN_GRP
+				  FROM SCR A
+				  INNER JOIN SCR_PRM B ON A.SCR_ID = B.SCR_ID
+				    AND A.SCR_ID = #{scriptId}
 				  ORDER BY B.ORD_IN_GRP
 				""";
 		sql = sql.replace("#{scriptId}", input.getString("scriptId"));

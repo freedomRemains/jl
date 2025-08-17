@@ -53,13 +53,13 @@ public class GetAllTableInsertSqlServiceTest extends TestBase {
 	public static void createAllTableSelectSql(String dbName) {
 
 		// 全てのテーブルについて、SELECTのSQLを出力する
-		createTableSelectSql(dbName, "MGNRGRP");
-		createTableSelectSql(dbName, "MGNRKEYVAL");
-		createTableSelectSql(dbName, "TBLDEF");
-		createTableSelectSql(dbName, "TACCOUNT");
-		createTableSelectSql(dbName, "TMAIL");
-		createTableSelectSql(dbName, "TSCR");
-		createTableSelectSql(dbName, "TSCRELM");
+		createTableSelectSql(dbName, "GNR_GRP");
+		createTableSelectSql(dbName, "GNR_KEY_VAL");
+		createTableSelectSql(dbName, "TBL_DEF");
+		createTableSelectSql(dbName, "ACCNT");
+		createTableSelectSql(dbName, "MAIL");
+		createTableSelectSql(dbName, "SCR");
+		createTableSelectSql(dbName, "SCR_ELM");
 	}
 
 	private static void createTableSelectSql(String dbName, String tableName) {
@@ -68,7 +68,7 @@ public class GetAllTableInsertSqlServiceTest extends TestBase {
 		String dirPath = OUTPUT_PATH + "dbmng/" + dbName;
 		String defPath = "10_dbdef/20_auto_created";
 		String sqlPath = "30_sql/20_auto_created";
-		String tableDefFilePath = OUTPUT_PATH + "dbmng/" + dbName + "/10_dbdef/20_auto_created/TSCR.txt";
+		String tableDefFilePath = OUTPUT_PATH + "dbmng/" + dbName + "/10_dbdef/20_auto_created/SCR.txt";
 
 		// 正常系パターン
 		GenericParam input = new GenericParam();
@@ -86,13 +86,13 @@ public class GetAllTableInsertSqlServiceTest extends TestBase {
 	private static void createAllTableDataFile(String dbName) {
 
 		// 全てのテーブルについて、データのTSVファイルを出力する
-		createTableDataFile(dbName, "MGNRGRP");
-		createTableDataFile(dbName, "MGNRKEYVAL");
-		createTableDataFile(dbName, "TBLDEF");
-		createTableDataFile(dbName, "TACCOUNT");
-		createTableDataFile(dbName, "TMAIL");
-		createTableDataFile(dbName, "TSCR");
-		createTableDataFile(dbName, "TSCRELM");
+		createTableDataFile(dbName, "GNR_GRP");
+		createTableDataFile(dbName, "GNR_KEY_VAL");
+		createTableDataFile(dbName, "TBL_DEF");
+		createTableDataFile(dbName, "ACCNT");
+		createTableDataFile(dbName, "MAIL");
+		createTableDataFile(dbName, "SCR");
+		createTableDataFile(dbName, "SCR_ELM");
 	}
 
 	private static void createTableDataFile(String dbName, String tableName) {
@@ -185,11 +185,11 @@ public class GetAllTableInsertSqlServiceTest extends TestBase {
 		String dataPath = "20_dbdata/20_auto_created";
 		String sqlPath = "30_sql/20_auto_created";
 		var tableNameList = new ArrayList<LinkedHashMap<String, String>>();
-		addMapToList(tableNameList, "MGNRGRP");
-		addMapToList(tableNameList, "MGNRKEYVAL");
-		addMapToList(tableNameList, "TACCOUNT");
-		addMapToList(tableNameList, "TSCR");
-		addMapToList(tableNameList, "TSCRELM");
+		addMapToList(tableNameList, "GNR_GRP");
+		addMapToList(tableNameList, "GNR_KEY_VAL");
+		addMapToList(tableNameList, "ACCNT");
+		addMapToList(tableNameList, "SCR");
+		addMapToList(tableNameList, "SCR_ELM");
 		doServiceByTableNameList(dirPath, defPath, dataPath, sqlPath, tableNameList);
 
 		// DB定義ファイルが出力されていることを確認する
@@ -282,31 +282,31 @@ public class GetAllTableInsertSqlServiceTest extends TestBase {
 
 		// ファイルが出力されていることを確認する
 		String outputPath = OUTPUT_PATH + "dbmng/" + dbName + "/30_sql/20_auto_created/";
-		assertTrue(new File(outputPath + "INSERT_MGNRGRP.txt").exists());
-		assertTrue(new File(outputPath + "INSERT_MGNRGRP.txt").length() > 0);
-		assertTrue(new File(outputPath + "INSERT_MGNRKEYVAL.txt").exists());
-		assertTrue(new File(outputPath + "INSERT_MGNRKEYVAL.txt").length() > 0);
-		assertTrue(new File(outputPath + "INSERT_TACCOUNT.txt").exists());
-		assertTrue(new File(outputPath + "INSERT_TACCOUNT.txt").length() > 0);
-		assertTrue(new File(outputPath + "INSERT_TSCR.txt").exists());
-		assertTrue(new File(outputPath + "INSERT_TSCR.txt").length() > 0);
-		assertTrue(new File(outputPath + "INSERT_TSCRELM.txt").exists());
-		assertTrue(new File(outputPath + "INSERT_TSCRELM.txt").length() > 0);
+		assertTrue(new File(outputPath + "INSERT_GNR_GRP.txt").exists());
+		assertTrue(new File(outputPath + "INSERT_GNR_GRP.txt").length() > 0);
+		assertTrue(new File(outputPath + "INSERT_GNR_KEY_VAL.txt").exists());
+		assertTrue(new File(outputPath + "INSERT_GNR_KEY_VAL.txt").length() > 0);
+		assertTrue(new File(outputPath + "INSERT_ACCNT.txt").exists());
+		assertTrue(new File(outputPath + "INSERT_ACCNT.txt").length() > 0);
+		assertTrue(new File(outputPath + "INSERT_SCR.txt").exists());
+		assertTrue(new File(outputPath + "INSERT_SCR.txt").length() > 0);
+		assertTrue(new File(outputPath + "INSERT_SCR_ELM.txt").exists());
+		assertTrue(new File(outputPath + "INSERT_SCR_ELM.txt").length() > 0);
 	}
 
 	private void assertNoFileOutput() {
 
 		// ファイルが出力されていないことを確認する
 		String outputPath = OUTPUT_PATH + "dbmng/" + dbName + "/30_sql/20_auto_created/";
-		assertFalse(new File(outputPath + "INSERT_MGNRGRP.txt").exists());
-		assertFalse(new File(outputPath + "INSERT_MGNRGRP.txt").length() > 0);
-		assertFalse(new File(outputPath + "INSERT_MGNRKEYVAL.txt").exists());
-		assertFalse(new File(outputPath + "INSERT_MGNRKEYVAL.txt").length() > 0);
-		assertFalse(new File(outputPath + "INSERT_TACCOUNT.txt").exists());
-		assertFalse(new File(outputPath + "INSERT_TACCOUNT.txt").length() > 0);
-		assertFalse(new File(outputPath + "INSERT_TSCR.txt").exists());
-		assertFalse(new File(outputPath + "INSERT_TSCR.txt").length() > 0);
-		assertFalse(new File(outputPath + "INSERT_TSCRELM.txt").exists());
-		assertFalse(new File(outputPath + "INSERT_TSCRELM.txt").length() > 0);
+		assertFalse(new File(outputPath + "INSERT_GNR_GRP.txt").exists());
+		assertFalse(new File(outputPath + "INSERT_GNR_GRP.txt").length() > 0);
+		assertFalse(new File(outputPath + "INSERT_GNR_KEY_VAL.txt").exists());
+		assertFalse(new File(outputPath + "INSERT_GNR_KEY_VAL.txt").length() > 0);
+		assertFalse(new File(outputPath + "INSERT_ACCNT.txt").exists());
+		assertFalse(new File(outputPath + "INSERT_ACCNT.txt").length() > 0);
+		assertFalse(new File(outputPath + "INSERT_SCR.txt").exists());
+		assertFalse(new File(outputPath + "INSERT_SCR.txt").length() > 0);
+		assertFalse(new File(outputPath + "INSERT_SCR_ELM.txt").exists());
+		assertFalse(new File(outputPath + "INSERT_SCR_ELM.txt").length() > 0);
 	}
 }

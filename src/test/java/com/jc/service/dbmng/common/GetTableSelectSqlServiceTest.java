@@ -104,7 +104,7 @@ public class GetTableSelectSqlServiceTest extends TestBase {
 		// 必要なパラメータを準備する
 		String dirPath = OUTPUT_PATH + "dbmng/" + dbName;
 		String defPath = "10_dbdef/20_auto_created";
-		String tableName = "TSCR";
+		String tableName = "SCR";
 
 		// (カバレッジ)存在しない出力先を指定するパターン
 		GenericParam input = new GenericParam();
@@ -130,7 +130,7 @@ public class GetTableSelectSqlServiceTest extends TestBase {
 		String dirPath = OUTPUT_PATH + "dbmng/" + dbName;
 		String defPath = "10_dbdef/20_auto_created";
 		String sqlPath = "30_sql/20_auto_created";
-		String tableName = "TSCR";
+		String tableName = "SCR";
 
 		// 正常系パターン
 		GenericParam input = new GenericParam();
@@ -145,8 +145,8 @@ public class GetTableSelectSqlServiceTest extends TestBase {
 
 		// ファイルが生成されていることを確認する
 		String outputPath = dirPath + "/" + sqlPath + "/";
-		assertTrue(new File(outputPath + "SELECT_TSCR.txt").exists());
-		assertTrue(new File(outputPath + "SELECT_TSCR.txt").length() > 0);
+		assertTrue(new File(outputPath + "SELECT_SCR.txt").exists());
+		assertTrue(new File(outputPath + "SELECT_SCR.txt").length() > 0);
 	}
 
 	@Test
@@ -156,7 +156,7 @@ public class GetTableSelectSqlServiceTest extends TestBase {
 		String dirPath = OUTPUT_PATH + "dbmng/" + dbName;
 		String defPath = "10_dbdef/20_auto_created";
 		String sqlPath = "30_sql/20_auto_created";
-		String tableName = "TSCR";
+		String tableName = "SCR";
 
 		// カバレッジ(オンメモリにテーブルリストがある状態で実行)
 		GenericParam input = new GenericParam();
@@ -175,8 +175,8 @@ public class GetTableSelectSqlServiceTest extends TestBase {
 
 		// ファイルが生成されていることを確認する
 		String outputPath = dirPath + "/" + sqlPath + "/";
-		assertTrue(new File(outputPath + "SELECT_TSCR.txt").exists());
-		assertTrue(new File(outputPath + "SELECT_TSCR.txt").length() > 0);
+		assertTrue(new File(outputPath + "SELECT_SCR.txt").exists());
+		assertTrue(new File(outputPath + "SELECT_SCR.txt").length() > 0);
 
 		// カバレッジ(サイズが0のtableDef)
 		tableDef.clear();
@@ -184,7 +184,7 @@ public class GetTableSelectSqlServiceTest extends TestBase {
 		service.doService(input, output);
 
 		// オンメモリの空情報は使わず、ファイルが生成されていることを確認する
-		assertTrue(new File(outputPath + "SELECT_TSCR.txt").exists());
-		assertTrue(new File(outputPath + "SELECT_TSCR.txt").length() > 0);
+		assertTrue(new File(outputPath + "SELECT_SCR.txt").exists());
+		assertTrue(new File(outputPath + "SELECT_SCR.txt").length() > 0);
 	}
 }

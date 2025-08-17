@@ -95,7 +95,7 @@ public class DbSelectBySqlFileServiceTest extends TestBase {
 
 		service.doService(input, output);
 
-		String sql = "SELECT * FROM TSCR";
+		String sql = "SELECT * FROM SCR";
 		ArrayList<LinkedHashMap<String, String>> recordList = input.getDb().select(sql);
 		assertEquals(recordList.size(), output.getRecordList("selectResult").size());
 	}

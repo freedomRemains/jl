@@ -94,7 +94,7 @@ public class DbUpdateBySqlFileServiceTest extends TestBase {
 		GenericParam output = new GenericParam();
 		DbUpdateBySqlFileService service = new DbUpdateBySqlFileService();
 
-		String sql = "SELECT * FROM MGNRGRP WHERE MGNRGRP_ID = 1000002";
+		String sql = "SELECT * FROM GNR_GRP WHERE GNR_GRP_ID = 1000002";
 		service.doService(input, output);
 
 		ArrayList<LinkedHashMap<String, String>> recordList = input.getDb().select(sql);

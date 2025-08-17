@@ -107,7 +107,7 @@ public class GetTableDropSqlServiceTest extends TestBase {
 
 		// 必要なパラメータを準備する
 		String dirPath = OUTPUT_PATH + "dbmng/" + dbName;
-		String tableName = "TSCR";
+		String tableName = "SCR";
 
 		// (カバレッジ)存在しない出力先を指定するパターン
 		GenericParam input = new GenericParam();
@@ -131,7 +131,7 @@ public class GetTableDropSqlServiceTest extends TestBase {
 		// 必要なパラメータを準備する
 		String dirPath = OUTPUT_PATH + "dbmng/" + dbName;
 		String sqlPath = "30_sql/20_auto_created";
-		String tableName = "TSCR";
+		String tableName = "SCR";
 
 		// 正常系パターン
 		GenericParam input = new GenericParam();
@@ -145,7 +145,7 @@ public class GetTableDropSqlServiceTest extends TestBase {
 
 		// ファイルが生成されていることを確認する
 		String outputPath = dirPath + "/" + sqlPath + "/";
-		assertTrue(new File(outputPath + "DROP_TSCR.txt").exists());
-		assertTrue(new File(outputPath + "DROP_TSCR.txt").length() > 0);
+		assertTrue(new File(outputPath + "DROP_SCR.txt").exists());
+		assertTrue(new File(outputPath + "DROP_SCR.txt").length() > 0);
 	}
 }

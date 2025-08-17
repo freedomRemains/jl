@@ -104,7 +104,7 @@ public class GetTableCreateSqlServiceTest extends TestBase {
 		// 必要なパラメータを準備する
 		String dirPath = OUTPUT_PATH + "dbmng/" + dbName;
 		String defPath = "10_dbdef/20_auto_created";
-		String tableName = "TSCR";
+		String tableName = "SCR";
 
 		// (カバレッジ)存在しない出力先を指定するパターン
 		GenericParam input = new GenericParam();
@@ -130,7 +130,7 @@ public class GetTableCreateSqlServiceTest extends TestBase {
 		String dirPath = OUTPUT_PATH + "dbmng/" + dbName;
 		String defPath = "10_dbdef/20_auto_created";
 		String sqlPath = "30_sql/20_auto_created";
-		String tableName = "TSCR";
+		String tableName = "SCR";
 
 		// 正常系パターン
 		GenericParam input = new GenericParam();
@@ -145,8 +145,8 @@ public class GetTableCreateSqlServiceTest extends TestBase {
 
 		// ファイルが生成されていることを確認する
 		String outputPath = dirPath + "/" + sqlPath + "/";
-		assertTrue(new File(outputPath + "CREATE_TSCR.txt").exists());
-		assertTrue(new File(outputPath + "CREATE_TSCR.txt").length() > 0);
+		assertTrue(new File(outputPath + "CREATE_SCR.txt").exists());
+		assertTrue(new File(outputPath + "CREATE_SCR.txt").length() > 0);
 	}
 
 	@Test
@@ -156,7 +156,7 @@ public class GetTableCreateSqlServiceTest extends TestBase {
 		String dirPath = OUTPUT_PATH + "dbmng/" + dbName;
 		String defPath = "10_dbdef/20_auto_created";
 		String sqlPath = "30_sql/20_auto_created";
-		String tableName = "TSCR";
+		String tableName = "SCR";
 
 		// カバレッジ(オンメモリにテーブルリストがある状態で実行)
 		GenericParam input = new GenericParam();
@@ -175,8 +175,8 @@ public class GetTableCreateSqlServiceTest extends TestBase {
 
 		// ファイルが生成されていることを確認する
 		String outputPath = dirPath + "/" + sqlPath + "/";
-		assertTrue(new File(outputPath + "CREATE_TSCR.txt").exists());
-		assertTrue(new File(outputPath + "CREATE_TSCR.txt").length() > 0);
+		assertTrue(new File(outputPath + "CREATE_SCR.txt").exists());
+		assertTrue(new File(outputPath + "CREATE_SCR.txt").length() > 0);
 
 		// カバレッジ(サイズが0のtableDef)
 		tableDef.clear();
@@ -184,8 +184,8 @@ public class GetTableCreateSqlServiceTest extends TestBase {
 		service.doService(input, output);
 
 		// オンメモリの空情報は使わず、ファイルが生成されていることを確認する
-		assertTrue(new File(outputPath + "CREATE_TSCR.txt").exists());
-		assertTrue(new File(outputPath + "CREATE_TSCR.txt").length() > 0);
+		assertTrue(new File(outputPath + "CREATE_SCR.txt").exists());
+		assertTrue(new File(outputPath + "CREATE_SCR.txt").length() > 0);
 	}
 
 	@Test
@@ -195,7 +195,7 @@ public class GetTableCreateSqlServiceTest extends TestBase {
 		String dirPath = OUTPUT_PATH + "dbmng/" + dbName;
 		String defPath = "10_dbdef/20_auto_created";
 		String sqlPath = "30_sql/20_auto_created";
-		String tableName = "TSCR";
+		String tableName = "SCR";
 
 		// カバレッジ(プライマリキーが2つ以上)
 		GenericParam input = new GenericParam();
@@ -218,9 +218,9 @@ public class GetTableCreateSqlServiceTest extends TestBase {
 
 		// ファイルが生成されていることを確認する
 		String outputPath = dirPath + "/" + sqlPath + "/";
-		assertTrue(new File(outputPath + "CREATE_TSCR.txt").exists());
-		assertTrue(new File(outputPath + "CREATE_TSCR.txt").length() > 0);
-		assertFileContains(outputPath + "CREATE_TSCR.txt", "PRIMARY KEY(TSCR_ID, SCR_NAME)");
+		assertTrue(new File(outputPath + "CREATE_SCR.txt").exists());
+		assertTrue(new File(outputPath + "CREATE_SCR.txt").length() > 0);
+		assertFileContains(outputPath + "CREATE_SCR.txt", "PRIMARY KEY(SCR_ID, SCR_NAME)");
 
 		// カバレッジ(プライマリキーなし)
 		tableDef.get(0).put("Key", "");
@@ -229,9 +229,9 @@ public class GetTableCreateSqlServiceTest extends TestBase {
 		service.doService(input, output);
 
 		// オンメモリの空情報は使わず、ファイルが生成されていることを確認する
-		assertTrue(new File(outputPath + "CREATE_TSCR.txt").exists());
-		assertTrue(new File(outputPath + "CREATE_TSCR.txt").length() > 0);
-		assertFileNotContains(outputPath + "CREATE_TSCR.txt", "PRIMARY KEY(");
+		assertTrue(new File(outputPath + "CREATE_SCR.txt").exists());
+		assertTrue(new File(outputPath + "CREATE_SCR.txt").length() > 0);
+		assertFileNotContains(outputPath + "CREATE_SCR.txt", "PRIMARY KEY(");
 
 		// カバレッジ(デフォルト値が空文字列)
 		tableDef.get(0).put("Key", "PRI");
@@ -240,8 +240,8 @@ public class GetTableCreateSqlServiceTest extends TestBase {
 		service.doService(input, output);
 
 		// オンメモリの空情報は使わず、ファイルが生成されていることを確認する
-		assertTrue(new File(outputPath + "CREATE_TSCR.txt").exists());
-		assertTrue(new File(outputPath + "CREATE_TSCR.txt").length() > 0);
+		assertTrue(new File(outputPath + "CREATE_SCR.txt").exists());
+		assertTrue(new File(outputPath + "CREATE_SCR.txt").length() > 0);
 
 		// カバレッジ(デフォルト値指定あり)
 		tableDef.get(0).put("Key", "PRI");
@@ -250,9 +250,9 @@ public class GetTableCreateSqlServiceTest extends TestBase {
 		service.doService(input, output);
 
 		// オンメモリの空情報は使わず、ファイルが生成されていることを確認する
-		assertTrue(new File(outputPath + "CREATE_TSCR.txt").exists());
-		assertTrue(new File(outputPath + "CREATE_TSCR.txt").length() > 0);
-		assertFileContains(outputPath + "CREATE_TSCR.txt", "DEFAULT 'test'");
+		assertTrue(new File(outputPath + "CREATE_SCR.txt").exists());
+		assertTrue(new File(outputPath + "CREATE_SCR.txt").length() > 0);
+		assertFileContains(outputPath + "CREATE_SCR.txt", "DEFAULT 'test'");
 
 		// カバレッジ(デフォルト値指定あり、CURRENT_DATE)
 		tableDef.get(0).put("Key", "PRI");
@@ -261,9 +261,9 @@ public class GetTableCreateSqlServiceTest extends TestBase {
 		service.doService(input, output);
 
 		// オンメモリの空情報は使わず、ファイルが生成されていることを確認する
-		assertTrue(new File(outputPath + "CREATE_TSCR.txt").exists());
-		assertTrue(new File(outputPath + "CREATE_TSCR.txt").length() > 0);
-		assertFileContains(outputPath + "CREATE_TSCR.txt", "DEFAULT CURRENT_DATE");
+		assertTrue(new File(outputPath + "CREATE_SCR.txt").exists());
+		assertTrue(new File(outputPath + "CREATE_SCR.txt").length() > 0);
+		assertFileContains(outputPath + "CREATE_SCR.txt", "DEFAULT CURRENT_DATE");
 
 		// カバレッジ(デフォルト値指定あり、CURRENT_TIME)
 		tableDef.get(0).put("Key", "PRI");
@@ -272,9 +272,9 @@ public class GetTableCreateSqlServiceTest extends TestBase {
 		service.doService(input, output);
 
 		// オンメモリの空情報は使わず、ファイルが生成されていることを確認する
-		assertTrue(new File(outputPath + "CREATE_TSCR.txt").exists());
-		assertTrue(new File(outputPath + "CREATE_TSCR.txt").length() > 0);
-		assertFileContains(outputPath + "CREATE_TSCR.txt", "DEFAULT CURRENT_TIME");
+		assertTrue(new File(outputPath + "CREATE_SCR.txt").exists());
+		assertTrue(new File(outputPath + "CREATE_SCR.txt").length() > 0);
+		assertFileContains(outputPath + "CREATE_SCR.txt", "DEFAULT CURRENT_TIME");
 
 		// カバレッジ(デフォルト値指定あり、CURRENT_TIMESTAMP)
 		tableDef.get(0).put("Key", "PRI");
@@ -283,8 +283,8 @@ public class GetTableCreateSqlServiceTest extends TestBase {
 		service.doService(input, output);
 
 		// オンメモリの空情報は使わず、ファイルが生成されていることを確認する
-		assertTrue(new File(outputPath + "CREATE_TSCR.txt").exists());
-		assertTrue(new File(outputPath + "CREATE_TSCR.txt").length() > 0);
-		assertFileContains(outputPath + "CREATE_TSCR.txt", "DEFAULT CURRENT_TIMESTAMP");
+		assertTrue(new File(outputPath + "CREATE_SCR.txt").exists());
+		assertTrue(new File(outputPath + "CREATE_SCR.txt").length() > 0);
+		assertFileContains(outputPath + "CREATE_SCR.txt", "DEFAULT CURRENT_TIMESTAMP");
 	}
 }

@@ -95,7 +95,7 @@ public class GetTableDefByFileServiceTest extends TestBase {
 		// 必要なパラメータを準備する
 		String dirPath = OUTPUT_PATH + "dbmng/" + dbName;
 		String defPath = "10_dbdef/20_auto_created/notExistPath";
-		String tableName = "TSCR";
+		String tableName = "SCR";
 
 		// (カバレッジ)存在しないファイルを指定するパターン
 		GenericParam input = new GenericParam();
@@ -166,7 +166,7 @@ public class GetTableDefByFileServiceTest extends TestBase {
 		// 必要なパラメータを準備する
 		String dirPath = OUTPUT_PATH + "dbmng/" + dbName;
 		String defPath = "10_dbdef/20_auto_created";
-		String tableName = "TSCR";
+		String tableName = "SCR";
 
 		// 正常系
 		GenericParam input = new GenericParam();

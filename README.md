@@ -183,7 +183,7 @@ C:\local\project\remainz\dbmng\h2\10_dbdef\20_auto_created
 C:\local\project\remainz\dbmng\h2\20_dbdata\20_auto_created
 C:\local\project\remainz\dbmng\h2\30_sql\20_auto_created
 ```
-- [10_dbdef]配下の[tableNameList.txt]、[20_dbdata]配下の[TBLDEF.txt]を編集し、  
+- [10_dbdef]配下の[tableNameList.txt]、[20_dbdata]配下の[TBL_DEF.txt]を編集し、  
 [10_dbdef]配下の定義ファイル、[20_dbdata]配下のデータファイルを整合させ、  
 [DBメンテナンス]の[DB構成更新]を実行すると、編集内容通りにDBの定義やデータを変更できます。
 - 現状は単なる使いづらいDB管理ツールですが、URLパターンや画面部品などを組み合わせると  

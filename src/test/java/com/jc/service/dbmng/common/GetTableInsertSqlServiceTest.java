@@ -42,8 +42,8 @@ public class GetTableInsertSqlServiceTest extends TestBase {
 		dbName = new DbPrepareUtil().beforeEach();
 
 		// テーブルデータを取得するために必要なSELECTのSQLを生成する
-		createTableSelectSql("TSCR");
-		createTableDataFile("TSCR");
+		createTableSelectSql("SCR");
+		createTableDataFile("SCR");
 	}
 
 	@AfterEach
@@ -59,7 +59,7 @@ public class GetTableInsertSqlServiceTest extends TestBase {
 		String dirPath = OUTPUT_PATH + "dbmng/" + dbName;
 		String defPath = "10_dbdef/20_auto_created";
 		String sqlPath = "30_sql/20_auto_created";
-		String tableDefFilePath = OUTPUT_PATH + "dbmng/" + dbName + "/10_dbdef/20_auto_created/TSCR.txt";
+		String tableDefFilePath = OUTPUT_PATH + "dbmng/" + dbName + "/10_dbdef/20_auto_created/SCR.txt";
 
 		// 正常系パターン
 		GenericParam input = new GenericParam();
@@ -163,7 +163,7 @@ public class GetTableInsertSqlServiceTest extends TestBase {
 		String dirPath = OUTPUT_PATH + "dbmng/" + dbName;
 		String defPath = "10_dbdef/20_auto_created";
 		String dataPath = "20_dbdata/20_auto_created";
-		String tableName = "TSCR";
+		String tableName = "SCR";
 
 		// (カバレッジ)存在しない出力先を指定するパターン
 		GenericParam input = new GenericParam();
@@ -191,7 +191,7 @@ public class GetTableInsertSqlServiceTest extends TestBase {
 		String defPath = "10_dbdef/20_auto_created";
 		String dataPath = "20_dbdata/20_auto_created";
 		String sqlPath = "30_sql/20_auto_created";
-		String tableName = "TSCR";
+		String tableName = "SCR";
 
 		// 正常系パターン
 		GenericParam input = new GenericParam();
@@ -219,7 +219,7 @@ public class GetTableInsertSqlServiceTest extends TestBase {
 		String dirPath = OUTPUT_PATH + "dbmng/" + dbName;
 		String defPath = "10_dbdef/20_auto_created";
 		String sqlPath = "30_sql/20_auto_created";
-		String tableName = "TSCR";
+		String tableName = "SCR";
 
 		// (カバレッジ)テーブルデータファイルが存在しないパターン
 		GenericParam input = new GenericParam();
@@ -282,7 +282,7 @@ public class GetTableInsertSqlServiceTest extends TestBase {
 		String defPath = "10_dbdef/20_auto_created";
 		String dataPath = "20_dbdata/20_auto_created/notExistPath";
 		String sqlPath = "30_sql/20_auto_created";
-		String tableName = "TSCR";
+		String tableName = "SCR";
 
 		// (カバレッジ)存在しないデータファイル
 		GenericParam input = new GenericParam();
@@ -350,7 +350,7 @@ public class GetTableInsertSqlServiceTest extends TestBase {
 		String defPath = "GetTableInsertSqlServiceTest";
 		String dataPath = "GetTableDefByFileServiceTest";
 		String sqlPath = "GetTableDefByFileServiceTest";
-		String tableName = "MGNRKEYVAL";
+		String tableName = "GNR_KEY_VAL";
 
 		// (カバレッジ)存在しないカラム
 		GenericParam input = new GenericParam();
