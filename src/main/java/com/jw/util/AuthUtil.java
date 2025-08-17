@@ -24,11 +24,11 @@ public class AuthUtil {
 		// アカウントに紐づく全ての権限を取得する
 		String sql = """
 				SELECT
-					B.MHTMLPARTS_ID, B.AUTH_KIND
-				FROM TROLEINACCOUNT A
-				LEFT JOIN THTMLPARTSINROLE B ON A.MROLE_ID = B.MROLE_ID
-				WHERE A.TACCOUNT_ID = ?
-				ORDER BY B.MHTMLPARTS_ID
+					B.HTML_PARTS_ID, B.AUTH_KIND
+				FROM APROLE_IN_ACCNT A
+				LEFT JOIN HTML_PARTS_IN_APROLE B ON A.APROLE_ID = B.APROLE_ID
+				WHERE A.ACCNT_ID = ?
+				ORDER BY B.HTML_PARTS_ID
 				""";
 		var paramList = new ArrayList<String>();
 		paramList.add(accountId);
@@ -44,7 +44,7 @@ public class AuthUtil {
 	 */
 	public boolean hasAuth(String mhtmlpartsId, ArrayList<LinkedHashMap<String, String>> authList) {
 		for (LinkedHashMap<String, String> columnMap : authList) {
-			if (columnMap.get("MHTMLPARTS_ID").equals(mhtmlpartsId)) {
+			if (columnMap.get("HTML_PARTS_ID").equals(mhtmlpartsId)) {
 				return true;
 			}
 		}
@@ -60,7 +60,7 @@ public class AuthUtil {
 	 */
 	public boolean hasReadAuth(String mhtmlpartsId, ArrayList<LinkedHashMap<String, String>> authList) {
 		for (LinkedHashMap<String, String> columnMap : authList) {
-			if (columnMap.get("MHTMLPARTS_ID").equals(mhtmlpartsId)
+			if (columnMap.get("HTML_PARTS_ID").equals(mhtmlpartsId)
 					&& columnMap.get("AUTH_KIND").equals("read")) {
 				return true;
 			}
@@ -77,7 +77,7 @@ public class AuthUtil {
 	 */
 	public boolean hasEditAuth(String mhtmlpartsId, ArrayList<LinkedHashMap<String, String>> authList) {
 		for (LinkedHashMap<String, String> columnMap : authList) {
-			if (columnMap.get("MHTMLPARTS_ID").equals(mhtmlpartsId)
+			if (columnMap.get("HTML_PARTS_ID").equals(mhtmlpartsId)
 					&& columnMap.get("AUTH_KIND").equals("edit")) {
 				return true;
 			}
@@ -99,11 +99,11 @@ public class AuthUtil {
 		// アカウントに紐づく全ての権限を取得する
 		String sql = """
 				SELECT
-					A.MROLE_ID, B.ROLE_NAME
-				FROM TROLEINACCOUNT A
-				LEFT JOIN MROLE B ON A.MROLE_ID = B.MROLE_ID
-				WHERE A.TACCOUNT_ID = ?
-				ORDER BY A.MROLE_ID
+					A.APROLE_ID, B.ROLE_NAME
+				FROM APROLE_IN_ACCNT A
+				LEFT JOIN APROLE B ON A.APROLE_ID = B.APROLE_ID
+				WHERE A.ACCNT_ID = ?
+				ORDER BY A.APROLE_ID
 				""";
 		var paramList = new ArrayList<String>();
 		paramList.add(accountId);
@@ -119,7 +119,7 @@ public class AuthUtil {
 	 */
 	public boolean hasRole(String roleId, ArrayList<LinkedHashMap<String, String>> roleList) {
 		for (LinkedHashMap<String, String> columnMap : roleList) {
-			if (columnMap.get("MROLE_ID").equals(roleId)) {
+			if (columnMap.get("APROLE_ID").equals(roleId)) {
 				return true;
 			}
 		}

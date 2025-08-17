@@ -63,13 +63,13 @@ public class CreateRecordServiceTest extends TestBase {
 		var service = new CreateRecordService();
 		input.setDb(getDb());
 		input.putString("accountId", "data_loader");
-		input.putString("tableName", "MGNRGRP");
+		input.putString("tableName", "GNR_GRP");
 		input.putString("GNR_GRP_NAME", "newGroup");
 
 		service.doService(input, output);
-		assertEquals("MGNRGRP", output.getString("tableName"));
+		assertEquals("GNR_GRP", output.getString("tableName"));
 		assertEquals("1", output.getString("updateCnt"));
-		var recordList = input.getDb().select("SELECT * FROM MGNRGRP WHERE GNR_GRP_NAME = 'newGroup'");
+		var recordList = input.getDb().select("SELECT * FROM GNR_GRP WHERE GNR_GRP_NAME = 'newGroup'");
 		assertEquals(1, recordList.size());
 
 		// DB更新をロールバックする
@@ -108,13 +108,13 @@ public class CreateRecordServiceTest extends TestBase {
 		var service = new CreateRecordService();
 		input.setDb(getDb());
 		input.putString("accountId", "data_loader");
-		input.putString("tableName", "MGNRGRP");
+		input.putString("tableName", "GNR_GRP");
 		input.putString("GNR_GRP_NAME", "newGroup");
 
 		service.doService(input, output);
-		assertEquals("MGNRGRP", output.getString("tableName"));
+		assertEquals("GNR_GRP", output.getString("tableName"));
 		assertEquals("1", output.getString("updateCnt"));
-		var recordList = input.getDb().select("SELECT * FROM MGNRGRP WHERE GNR_GRP_NAME = 'newGroup'");
+		var recordList = input.getDb().select("SELECT * FROM GNR_GRP WHERE GNR_GRP_NAME = 'newGroup'");
 		assertEquals(1, recordList.size());
 
 		// DB更新をロールバックする
@@ -130,7 +130,7 @@ public class CreateRecordServiceTest extends TestBase {
 		var service = new CreateRecordService();
 		input.setDb(getDb());
 		input.putString("accountId", "data_loader");
-		input.putString("tableName", "MVIEWDEF");
+		input.putString("tableName", "VIEW_DEF");
 		input.putString("TABLE_NAME", "TNEWTBL1");
 		input.putString("FIELD_NAME", "NEW_FIELD_1");
 		input.putString("TYPE_NAME", "INT");
@@ -144,9 +144,9 @@ public class CreateRecordServiceTest extends TestBase {
 											
 
 		service.doService(input, output);
-		assertEquals("MVIEWDEF", output.getString("tableName"));
+		assertEquals("VIEW_DEF", output.getString("tableName"));
 		assertEquals("1", output.getString("updateCnt"));
-		var recordList = input.getDb().select("SELECT * FROM MVIEWDEF WHERE TABLE_NAME = 'TNEWTBL1'");
+		var recordList = input.getDb().select("SELECT * FROM VIEW_DEF WHERE TABLE_NAME = 'TNEWTBL1'");
 		assertEquals(1, recordList.size());
 
 		// DB更新をロールバックする
@@ -162,13 +162,13 @@ public class CreateRecordServiceTest extends TestBase {
 		var service = new CreateRecordService();
 		input.setDb(getDb());
 		input.putString("accountId", "data_loader");
-		input.putString("tableName", "TMAIL");
+		input.putString("tableName", "MAIL");
 		input.putString("MAIL_FROM", "mailFrom");
 
 		service.doService(input, output);
-		assertEquals("TMAIL", output.getString("tableName"));
+		assertEquals("MAIL", output.getString("tableName"));
 		assertEquals("1", output.getString("updateCnt"));
-		var recordList = input.getDb().select("SELECT * FROM TMAIL WHERE MAIL_FROM = 'mailFrom'");
+		var recordList = input.getDb().select("SELECT * FROM MAIL WHERE MAIL_FROM = 'mailFrom'");
 		assertEquals(1, recordList.size());
 
 		// DB更新をロールバックする
@@ -184,14 +184,14 @@ public class CreateRecordServiceTest extends TestBase {
 		var service = new CreateRecordService();
 		input.setDb(getDb());
 		input.putString("accountId", "data_loader");
-		input.putString("tableName", "MGNRGRP");
+		input.putString("tableName", "GNR_GRP");
 		input.putString("requireRuledNumber", "true");
 		input.putString("GNR_GRP_NAME", "newGroup");
 
 		service.doService(input, output);
-		assertEquals("MGNRGRP", output.getString("tableName"));
+		assertEquals("GNR_GRP", output.getString("tableName"));
 		assertEquals("1", output.getString("updateCnt"));
-		var recordList = input.getDb().select("SELECT * FROM MGNRGRP WHERE GNR_GRP_NAME = 'newGroup'");
+		var recordList = input.getDb().select("SELECT * FROM GNR_GRP WHERE GNR_GRP_NAME = 'newGroup'");
 		assertEquals(1, recordList.size());
 
 		// DB更新をロールバックする

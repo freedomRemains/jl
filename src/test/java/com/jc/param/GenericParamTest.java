@@ -194,14 +194,14 @@ class GenericParamTest extends TestBase {
 		// recordLogのテスト(パラメータあり、1つ)
 		genericParam.putString("key", "value");
 		genericParam.putStringArray("key", new String[] {"testArray1", "testArray2"});
-		var recordList = getDb().select("SELECT * FROM MTBLDEF");
+		var recordList = getDb().select("SELECT * FROM TBL_DEF");
 		genericParam.putRecordList("key", recordList);
 		genericParam.recordLog(logger, "test");
 
 		// recordLogのテスト(パラメータあり、2つ以上、パスワードあり)
 		genericParam.putString("key2", "value2");
 		genericParam.putStringArray("key2", new String[] {"testArray2_1", "testArray2_2"});
-		var recordList2 = getDb().select("SELECT * FROM TACCOUNT");
+		var recordList2 = getDb().select("SELECT * FROM ACCNT");
 		genericParam.putRecordList("key2", recordList2);
 		genericParam.recordLog(logger, "test");
 	}

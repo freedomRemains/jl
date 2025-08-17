@@ -120,7 +120,7 @@ public class ScriptServiceTest extends TestBase {
 	@Test
 	void test03() {
 
-		// TSCRPRMを使用し、パラメータ指定を最小限とするパターンのテスト
+		// SCR_PRMを使用し、パラメータ指定を最小限とするパターンのテスト
 		// 最初にDB構成取得を実施し、output配下に各種SQLを出力する
 		// (こうしないとDB構成更新の元ネタであるDB定義ファイルやDBデータがoutput配下にない状態となるため)
 		var input = new GenericParam();
@@ -183,8 +183,8 @@ public class ScriptServiceTest extends TestBase {
 		// アダプタクラスと準備クラスを設定に追加する
 		String adapterClassName = "com.jc.service.dbmng.common.impl.BlankAdapter";
 		String prepareClassName = "com.jc.service.dbmng.common.impl.BlankPrepare";
-		String sql = "UPDATE TSCRELM SET ADAPTER = '" + adapterClassName + "', PREPARE_INPUT = '"
-				+ prepareClassName + "' WHERE TSCRELM_ID = 1000001";
+		String sql = "UPDATE SCR_ELM SET ADAPTER = '" + adapterClassName + "', PREPARE_INPUT = '"
+				+ prepareClassName + "' WHERE SCR_ELM_ID = 1000001";
 		getDb().update(sql);
 
 		// カバレッジ(アダプタ、準備クラス指定あり)
@@ -201,7 +201,7 @@ public class ScriptServiceTest extends TestBase {
 		GenericParam input = createNormalInput();
 
 		// サービス名に存在しないクラスを指定する
-		String sql = "UPDATE TSCRELM SET SERVICE_NAME = 'notExistService' WHERE TSCRELM_ID = 1000001";
+		String sql = "UPDATE SCR_ELM SET SERVICE_NAME = 'notExistService' WHERE SCR_ELM_ID = 1000001";
 		getDb().update(sql);
 
 		// カバレッジ(存在しないサービスクラス)
@@ -222,7 +222,7 @@ public class ScriptServiceTest extends TestBase {
 		GenericParam input = createNormalInput();
 
 		// エラーが起きるサービスを設定する
-		String sql = "UPDATE TSCRELM SET SERVICE_NAME = 'com.jc.service.dbmng.common.impl.ErrorService' WHERE TSCRELM_ID = 1000001";
+		String sql = "UPDATE SCR_ELM SET SERVICE_NAME = 'com.jc.service.dbmng.common.impl.ErrorService' WHERE SCR_ELM_ID = 1000001";
 		getDb().update(sql);
 
 		// カバレッジ(サービス内で例外発生)
@@ -252,7 +252,7 @@ public class ScriptServiceTest extends TestBase {
 		GenericParam input = createNormalInput();
 
 		// エラーが起きるサービスを設定する
-		String sql = "UPDATE TSCRELM SET SERVICE_NAME = 'com.jc.service.dbmng.common.impl.ApErrorService' WHERE TSCRELM_ID = 1000001";
+		String sql = "UPDATE SCR_ELM SET SERVICE_NAME = 'com.jc.service.dbmng.common.impl.ApErrorService' WHERE SCR_ELM_ID = 1000001";
 		getDb().update(sql);
 
 		// カバレッジ(サービス内で例外発生)
@@ -273,7 +273,7 @@ public class ScriptServiceTest extends TestBase {
 		GenericParam input = createNormalInput();
 
 		// エラーが起きるサービスを設定する
-		String sql = "UPDATE TSCRELM SET SERVICE_NAME = 'com.jc.service.dbmng.common.impl.BrErrorService' WHERE TSCRELM_ID = 1000001";
+		String sql = "UPDATE SCR_ELM SET SERVICE_NAME = 'com.jc.service.dbmng.common.impl.BrErrorService' WHERE SCR_ELM_ID = 1000001";
 		getDb().update(sql);
 
 		// カバレッジ(サービス内で例外発生)
@@ -365,63 +365,63 @@ public class ScriptServiceTest extends TestBase {
 	private void assertOutput(String dbName) {
 
 		String outputPath = OUTPUT_PATH + "dbmng/" + dbName + "/10_dbdef/20_auto_created/";
-		assertTrue(new File(outputPath + "MGNRGRP.txt").exists());
-		assertTrue(new File(outputPath + "MGNRGRP.txt").length() > 0);
-		assertTrue(new File(outputPath + "MGNRKEYVAL.txt").exists());
-		assertTrue(new File(outputPath + "MGNRKEYVAL.txt").length() > 0);
+		assertTrue(new File(outputPath + "GNR_GRP.txt").exists());
+		assertTrue(new File(outputPath + "GNR_GRP.txt").length() > 0);
+		assertTrue(new File(outputPath + "GNR_KEY_VAL.txt").exists());
+		assertTrue(new File(outputPath + "GNR_KEY_VAL.txt").length() > 0);
 		assertTrue(new File(outputPath + "tableNameList.txt").exists());
 		assertTrue(new File(outputPath + "tableNameList.txt").length() > 0);
-		assertTrue(new File(outputPath + "TACCOUNT.txt").exists());
-		assertTrue(new File(outputPath + "TACCOUNT.txt").length() > 0);
-		assertTrue(new File(outputPath + "TSCR.txt").exists());
-		assertTrue(new File(outputPath + "TSCR.txt").length() > 0);
-		assertTrue(new File(outputPath + "TSCRELM.txt").exists());
-		assertTrue(new File(outputPath + "TSCRELM.txt").length() > 0);
+		assertTrue(new File(outputPath + "ACCNT.txt").exists());
+		assertTrue(new File(outputPath + "ACCNT.txt").length() > 0);
+		assertTrue(new File(outputPath + "SCR.txt").exists());
+		assertTrue(new File(outputPath + "SCR.txt").length() > 0);
+		assertTrue(new File(outputPath + "SCR_ELM.txt").exists());
+		assertTrue(new File(outputPath + "SCR_ELM.txt").length() > 0);
 
 		outputPath = OUTPUT_PATH + "dbmng/" + dbName + "/20_dbdata/20_auto_created/";
-		assertTrue(new File(outputPath + "MGNRGRP.txt").exists());
-		assertTrue(new File(outputPath + "MGNRGRP.txt").length() > 0);
-		assertTrue(new File(outputPath + "MGNRKEYVAL.txt").exists());
-		assertTrue(new File(outputPath + "MGNRKEYVAL.txt").length() > 0);
-		assertTrue(new File(outputPath + "TACCOUNT.txt").exists());
-		assertTrue(new File(outputPath + "TACCOUNT.txt").length() > 0);
-		assertTrue(new File(outputPath + "TSCR.txt").exists());
-		assertTrue(new File(outputPath + "TSCR.txt").length() > 0);
-		assertTrue(new File(outputPath + "TSCRELM.txt").exists());
-		assertTrue(new File(outputPath + "TSCRELM.txt").length() > 0);
+		assertTrue(new File(outputPath + "GNR_GRP.txt").exists());
+		assertTrue(new File(outputPath + "GNR_GRP.txt").length() > 0);
+		assertTrue(new File(outputPath + "GNR_KEY_VAL.txt").exists());
+		assertTrue(new File(outputPath + "GNR_KEY_VAL.txt").length() > 0);
+		assertTrue(new File(outputPath + "ACCNT.txt").exists());
+		assertTrue(new File(outputPath + "ACCNT.txt").length() > 0);
+		assertTrue(new File(outputPath + "SCR.txt").exists());
+		assertTrue(new File(outputPath + "SCR.txt").length() > 0);
+		assertTrue(new File(outputPath + "SCR_ELM.txt").exists());
+		assertTrue(new File(outputPath + "SCR_ELM.txt").length() > 0);
 
 		outputPath = OUTPUT_PATH + "dbmng/" + dbName + "/30_sql/20_auto_created/";
-		assertTrue(new File(outputPath + "DROP_MGNRGRP.txt").exists());
-		assertTrue(new File(outputPath + "DROP_MGNRGRP.txt").length() > 0);
-		assertTrue(new File(outputPath + "DROP_MGNRKEYVAL.txt").exists());
-		assertTrue(new File(outputPath + "DROP_MGNRKEYVAL.txt").length() > 0);
-		assertTrue(new File(outputPath + "DROP_TACCOUNT.txt").exists());
-		assertTrue(new File(outputPath + "DROP_TACCOUNT.txt").length() > 0);
-		assertTrue(new File(outputPath + "DROP_TSCR.txt").exists());
-		assertTrue(new File(outputPath + "DROP_TSCR.txt").length() > 0);
-		assertTrue(new File(outputPath + "DROP_TSCRELM.txt").exists());
-		assertTrue(new File(outputPath + "DROP_TSCRELM.txt").length() > 0);
+		assertTrue(new File(outputPath + "DROP_GNR_GRP.txt").exists());
+		assertTrue(new File(outputPath + "DROP_GNR_GRP.txt").length() > 0);
+		assertTrue(new File(outputPath + "DROP_GNR_KEY_VAL.txt").exists());
+		assertTrue(new File(outputPath + "DROP_GNR_KEY_VAL.txt").length() > 0);
+		assertTrue(new File(outputPath + "DROP_ACCNT.txt").exists());
+		assertTrue(new File(outputPath + "DROP_ACCNT.txt").length() > 0);
+		assertTrue(new File(outputPath + "DROP_SCR.txt").exists());
+		assertTrue(new File(outputPath + "DROP_SCR.txt").length() > 0);
+		assertTrue(new File(outputPath + "DROP_SCR_ELM.txt").exists());
+		assertTrue(new File(outputPath + "DROP_SCR_ELM.txt").length() > 0);
 
-		assertTrue(new File(outputPath + "INSERT_MGNRGRP.txt").exists());
-		assertTrue(new File(outputPath + "INSERT_MGNRGRP.txt").length() > 0);
-		assertTrue(new File(outputPath + "INSERT_MGNRKEYVAL.txt").exists());
-		assertTrue(new File(outputPath + "INSERT_MGNRKEYVAL.txt").length() > 0);
-		assertTrue(new File(outputPath + "INSERT_TACCOUNT.txt").exists());
-		assertTrue(new File(outputPath + "INSERT_TACCOUNT.txt").length() > 0);
-		assertTrue(new File(outputPath + "INSERT_TSCR.txt").exists());
-		assertTrue(new File(outputPath + "INSERT_TSCR.txt").length() > 0);
-		assertTrue(new File(outputPath + "INSERT_TSCRELM.txt").exists());
-		assertTrue(new File(outputPath + "INSERT_TSCRELM.txt").length() > 0);
+		assertTrue(new File(outputPath + "INSERT_GNR_GRP.txt").exists());
+		assertTrue(new File(outputPath + "INSERT_GNR_GRP.txt").length() > 0);
+		assertTrue(new File(outputPath + "INSERT_GNR_KEY_VAL.txt").exists());
+		assertTrue(new File(outputPath + "INSERT_GNR_KEY_VAL.txt").length() > 0);
+		assertTrue(new File(outputPath + "INSERT_ACCNT.txt").exists());
+		assertTrue(new File(outputPath + "INSERT_ACCNT.txt").length() > 0);
+		assertTrue(new File(outputPath + "INSERT_SCR.txt").exists());
+		assertTrue(new File(outputPath + "INSERT_SCR.txt").length() > 0);
+		assertTrue(new File(outputPath + "INSERT_SCR_ELM.txt").exists());
+		assertTrue(new File(outputPath + "INSERT_SCR_ELM.txt").length() > 0);
 
-		assertTrue(new File(outputPath + "SELECT_MGNRGRP.txt").exists());
-		assertTrue(new File(outputPath + "SELECT_MGNRGRP.txt").length() > 0);
-		assertTrue(new File(outputPath + "SELECT_MGNRKEYVAL.txt").exists());
-		assertTrue(new File(outputPath + "SELECT_MGNRKEYVAL.txt").length() > 0);
-		assertTrue(new File(outputPath + "SELECT_TACCOUNT.txt").exists());
-		assertTrue(new File(outputPath + "SELECT_TACCOUNT.txt").length() > 0);
-		assertTrue(new File(outputPath + "SELECT_TSCR.txt").exists());
-		assertTrue(new File(outputPath + "SELECT_TSCR.txt").length() > 0);
-		assertTrue(new File(outputPath + "SELECT_TSCRELM.txt").exists());
-		assertTrue(new File(outputPath + "SELECT_TSCRELM.txt").length() > 0);
+		assertTrue(new File(outputPath + "SELECT_GNR_GRP.txt").exists());
+		assertTrue(new File(outputPath + "SELECT_GNR_GRP.txt").length() > 0);
+		assertTrue(new File(outputPath + "SELECT_GNR_KEY_VAL.txt").exists());
+		assertTrue(new File(outputPath + "SELECT_GNR_KEY_VAL.txt").length() > 0);
+		assertTrue(new File(outputPath + "SELECT_ACCNT.txt").exists());
+		assertTrue(new File(outputPath + "SELECT_ACCNT.txt").length() > 0);
+		assertTrue(new File(outputPath + "SELECT_SCR.txt").exists());
+		assertTrue(new File(outputPath + "SELECT_SCR.txt").length() > 0);
+		assertTrue(new File(outputPath + "SELECT_SCR_ELM.txt").exists());
+		assertTrue(new File(outputPath + "SELECT_SCR_ELM.txt").length() > 0);
 	}
 }

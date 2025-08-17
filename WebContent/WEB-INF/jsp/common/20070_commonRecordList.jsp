@@ -1,6 +1,6 @@
 <%@ page pageEncoding="UTF-8"%>
 
-            <div class="<%=columnMap.get("MHTMLPARTS_ID")%>">
+            <div class="<%=columnMap.get("HTML_PARTS_ID")%>">
               <div class="partsArea">
                 <% var tableDefList = (ArrayList<LinkedHashMap<String, String>>) request.getAttribute("tableDefList");
                    var dbRecordList = (ArrayList<LinkedHashMap<String, String>>) request.getAttribute("dbRecordList");

@@ -1,6 +1,6 @@
 <%@ page pageEncoding="UTF-8"%>
 
-            <div class="<%=columnMap.get("MHTMLPARTS_ID")%>">
+            <div class="<%=columnMap.get("HTML_PARTS_ID")%>">
               <div class="partsArea">
                 <hr>
                 <label><span class="genericLabel">このレコードを使用している外部テーブル</span><br /></label>

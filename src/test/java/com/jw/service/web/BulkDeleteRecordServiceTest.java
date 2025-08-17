@@ -54,15 +54,15 @@ public class BulkDeleteRecordServiceTest extends TestBase {
 		var output = new GenericParam();
 		var service = new BulkDeleteRecordService();
 		input.setDb(getDb());
-		input.putString("tableName", "MVIEWDEF");
+		input.putString("tableName", "VIEW_DEF");
 		input.putString("1000018", "on");
 		input.putString("1000020", "on");
 
 		service.doService(input, output);
-		assertEquals("MVIEWDEF", output.getString("tableName"));
+		assertEquals("VIEW_DEF", output.getString("tableName"));
 		assertEquals("1000018, 1000020", output.getString("recordId"));
 		assertEquals("2", output.getString("updateCnt"));
-		var recordList = input.getDb().select("SELECT * FROM MVIEWDEF WHERE MVIEWDEF_ID IN(1000018, 1000020)");
+		var recordList = input.getDb().select("SELECT * FROM VIEW_DEF WHERE VIEW_DEF_ID IN(1000018, 1000020)");
 		assertEquals(0, recordList.size());
 
 		// DB更新をロールバックする

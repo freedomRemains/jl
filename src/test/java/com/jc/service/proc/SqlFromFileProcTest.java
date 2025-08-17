@@ -48,10 +48,10 @@ public class SqlFromFileProcTest extends TestBase {
 		input.putString("filePath", RESOURCE_PATH + "service/fs/TextFileProcedureServiceTest/10_dropTable.sql");
 		proc.doProc(input, output, input.getString("filePath"));
 		assertNull(output.getDb());
-		assertTrue(output.getString("sqlFromFile").contains("DROP TABLE IF EXISTS JLDB.MGNRGRP;"));
-		assertTrue(output.getString("sqlFromFile").contains("DROP TABLE IF EXISTS JLDB.MGNRKEYVAL;"));
-		assertTrue(output.getString("sqlFromFile").contains("DROP TABLE IF EXISTS JLDB.TACCOUNT;"));
-		assertTrue(output.getString("sqlFromFile").contains("DROP TABLE IF EXISTS JLDB.TSCR;"));
-		assertTrue(output.getString("sqlFromFile").contains("DROP TABLE IF EXISTS JLDB.TSCRELM;"));
+		assertTrue(output.getString("sqlFromFile").contains("DROP TABLE IF EXISTS JLDB.GNR_GRP;"));
+		assertTrue(output.getString("sqlFromFile").contains("DROP TABLE IF EXISTS JLDB.GNR_KEY_VAL;"));
+		assertTrue(output.getString("sqlFromFile").contains("DROP TABLE IF EXISTS JLDB.ACCNT;"));
+		assertTrue(output.getString("sqlFromFile").contains("DROP TABLE IF EXISTS JLDB.SCR;"));
+		assertTrue(output.getString("sqlFromFile").contains("DROP TABLE IF EXISTS JLDB.SCR_ELM;"));
 	}
 }

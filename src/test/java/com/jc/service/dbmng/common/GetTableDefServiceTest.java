@@ -102,7 +102,7 @@ public class GetTableDefServiceTest extends TestBase {
 		String getTableDefSql = "SELECT NOT_EXIST_COLUMN FROM NOT_EXIST_TABLE";
 
 		// SQLエラーパターン
-		String tableName = "TSCR";
+		String tableName = "SCR";
 		String tableDefFilePath = OUTPUT_PATH + "dbmng/" + dbName + "/10_dbdef/20_auto_created/" + tableName + ".txt";
 		try {
 			doService(dbName, tableName, tableDefFilePath, getTableDefSql);
@@ -129,7 +129,7 @@ public class GetTableDefServiceTest extends TestBase {
 		prepareDb(dbName);
 
 		// 正常系パターン
-		String tableName = "TSCR";
+		String tableName = "SCR";
 		String tableDefFilePath = OUTPUT_PATH + "dbmng/" + dbName + "/10_dbdef/20_auto_created/" + tableName + ".txt";
 		doService(dbName, tableName, tableDefFilePath, getTableDefSql);
 
@@ -161,7 +161,7 @@ public class GetTableDefServiceTest extends TestBase {
 		convertMap.put("Default", "Default");
 		convertMap.put("Extra", "Extra");
 
-		String tableName = "TSCR";
+		String tableName = "SCR";
 		String tableDefFilePath = OUTPUT_PATH + "dbmng/" + dbName + "/10_dbdef/20_auto_created/" + tableName + ".txt";
 
 		// convertMapを設定するため、doServiceメソッドを呼び出さずにサービスを実行する
@@ -188,13 +188,13 @@ public class GetTableDefServiceTest extends TestBase {
 	private void doTest04(String dbName) {
 
 		// DB定義取得用SQLを生成する
-		String getTableDefSql = "SELECT * FROM MTBLDEF WHERE TABLE_NAME = 'NOT_EXIST_TABLE'";
+		String getTableDefSql = "SELECT * FROM TBL_DEF WHERE TABLE_NAME = 'NOT_EXIST_TABLE'";
 
 		// DBの準備を行う
 		prepareDb(dbName);
 
 		// カバレッジ(テーブル定義取得SQLでデータが取得できない)
-		String tableName = "TSCR";
+		String tableName = "SCR";
 		String tableDefFilePath = OUTPUT_PATH + "dbmng/" + dbName + "/10_dbdef/20_auto_created/" + tableName + ".txt";
 		try {
 			doService(dbName, tableName, tableDefFilePath, getTableDefSql);

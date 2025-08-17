@@ -122,11 +122,11 @@ public class TextFileProcedureServiceTest extends TestBase {
 		input.putString("dirPath", RESOURCE_PATH + "service/fs/TextFileProcedureServiceTest");
 		input.putString("fileName", "10_dropTable.sql");
 		service.doService(input, output);
-		assertTrue(output.getString("sqlFromFile").contains("DROP TABLE IF EXISTS JLDB.MGNRGRP;"));
-		assertTrue(output.getString("sqlFromFile").contains("DROP TABLE IF EXISTS JLDB.MGNRKEYVAL;"));
-		assertTrue(output.getString("sqlFromFile").contains("DROP TABLE IF EXISTS JLDB.TACCOUNT;"));
-		assertTrue(output.getString("sqlFromFile").contains("DROP TABLE IF EXISTS JLDB.TSCR;"));
-		assertTrue(output.getString("sqlFromFile").contains("DROP TABLE IF EXISTS JLDB.TSCRELM;"));
+		assertTrue(output.getString("sqlFromFile").contains("DROP TABLE IF EXISTS JLDB.GNR_GRP;"));
+		assertTrue(output.getString("sqlFromFile").contains("DROP TABLE IF EXISTS JLDB.GNR_KEY_VAL;"));
+		assertTrue(output.getString("sqlFromFile").contains("DROP TABLE IF EXISTS JLDB.ACCNT;"));
+		assertTrue(output.getString("sqlFromFile").contains("DROP TABLE IF EXISTS JLDB.SCR;"));
+		assertTrue(output.getString("sqlFromFile").contains("DROP TABLE IF EXISTS JLDB.SCR_ELM;"));
 	}
 
 	@Test

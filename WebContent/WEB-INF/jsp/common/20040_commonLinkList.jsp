@@ -1,12 +1,12 @@
 <%@ page pageEncoding="UTF-8"%>
 
-            <% if (!"1000001".equals(account.get(0).get("TACCOUNT_ID"))) { %>
-              <div class="<%=columnMap.get("MHTMLPARTS_ID")%>">
+            <% if (!"1000001".equals(account.get(0).get("ACCNT_ID"))) { %>
+              <div class="<%=columnMap.get("HTML_PARTS_ID")%>">
                 <div class="linkArea">
                   <% var linkList = (ArrayList<LinkedHashMap<String, String>>) request.getAttribute("linkList");
                      for (LinkedHashMap<String, String> link : linkList) {
                        String url = link.get("URI_PATTERN");
-                       String pageName = link.get("LINK_NAME");
+                       String pageName = link.get("LNK_NAME");
                        if ("/jl/service/error.html".equals(url)) {
                          continue;
                        }

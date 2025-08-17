@@ -214,7 +214,7 @@ public class DbPrepareUtil extends TestBase {
 		// DB定義取得用SQLを生成する
 		String getTableDefSql = "desc #TABLE_NAME#";
 		if ("h2".equals(dbName)) {
-			getTableDefSql = "SELECT * FROM MTBLDEF WHERE TABLE_NAME = '#TABLE_NAME#'";
+			getTableDefSql = "SELECT * FROM TBL_DEF WHERE TABLE_NAME = '#TABLE_NAME#'";
 		}
 
 		// DB定義取得用SQLを呼び出し側に返却する

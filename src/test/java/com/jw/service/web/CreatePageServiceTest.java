@@ -54,7 +54,7 @@ public class CreatePageServiceTest extends TestBase {
 		}
 
 		try {
-			input.putString("tableName", "MHTMLPAGE");
+			input.putString("tableName", "HTML_PAGE");
 			service.doService(input, output);
 			fail();
 		} catch (BusinessRuleViolationException e) {
@@ -79,12 +79,12 @@ public class CreatePageServiceTest extends TestBase {
 		var service = new CreatePageService();
 		input.setDb(getDb());
 		input.putString("accountId", "data_loader");
-		input.putString("tableName", "MHTMLPAGE");
+		input.putString("tableName", "HTML_PAGE");
 		input.putString("PAGE_NAME", "新規パーツ追加");
 		input.putString("URI_PATTERN", "/newHtmlParts");
 
 		service.doService(input, output);
-		var recordList = input.getDb().select("SELECT * FROM MURIPATTERN WHERE URI_PATTERN = '/newHtmlParts'");
+		var recordList = input.getDb().select("SELECT * FROM URI_PATTERN WHERE URI_PATTERN = '/newHtmlParts'");
 		assertEquals(1, recordList.size());
 
 		// DB更新をロールバックする
@@ -100,7 +100,7 @@ public class CreatePageServiceTest extends TestBase {
 		var service = new CreatePageService();
 		input.setDb(getDb());
 		input.putString("accountId", "data_loader");
-		input.putString("tableName", "MHTMLPAGE");
+		input.putString("tableName", "HTML_PAGE");
 		input.putString("PAGE_NAME", "TOP");
 		input.putString("URI_PATTERN", "/jl/service/top.html");
 
@@ -124,12 +124,12 @@ public class CreatePageServiceTest extends TestBase {
 		var service = new CreatePageService();
 		input.setDb(getDb());
 		input.putString("accountId", "data_loader");
-		input.putString("tableName", "MHTMLPAGE");
+		input.putString("tableName", "HTML_PAGE");
 		input.putString("PAGE_NAME", "新規パーツ追加");
 		input.putString("URI_PATTERN", "/newHtmlParts");
 
-		// MLINKのレコードを消し、予期せぬ例外を発生させる
-		input.getDb().update("DELETE FROM MLINK");
+		// LNKのレコードを消し、予期せぬ例外を発生させる
+		input.getDb().update("DELETE FROM LNK");
 
 		// サービスを実行する
 		try {

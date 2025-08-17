@@ -46,7 +46,7 @@ public class UpdateRecordServiceTest extends TestBase {
 		}
 
 		try {
-			input.putString("tableName", "MVIEWDEF");
+			input.putString("tableName", "VIEW_DEF");
 			service.doService(input, output);
 			fail();
 		} catch (BusinessRuleViolationException e) {
@@ -62,15 +62,15 @@ public class UpdateRecordServiceTest extends TestBase {
 		var output = new GenericParam();
 		var service = new UpdateRecordService();
 		input.setDb(getDb());
-		input.putString("tableName", "MVIEWDEF");
+		input.putString("tableName", "VIEW_DEF");
 		input.putString("recordId", "1000020");
 		input.putString("FOREIGN_TABLE", "TEST_TABLE");
 
 		service.doService(input, output);
-		assertEquals("MVIEWDEF", output.getString("tableName"));
+		assertEquals("VIEW_DEF", output.getString("tableName"));
 		assertEquals("1000020", output.getString("recordId"));
 		assertEquals("1", output.getString("updateCnt"));
-		var recordList = input.getDb().select("SELECT * FROM MVIEWDEF WHERE MVIEWDEF_ID = 1000020");
+		var recordList = input.getDb().select("SELECT * FROM VIEW_DEF WHERE VIEW_DEF_ID = 1000020");
 		assertEquals("TEST_TABLE", recordList.get(0).get("FOREIGN_TABLE"));
 
 		// DB更新をロールバックする
@@ -107,16 +107,16 @@ public class UpdateRecordServiceTest extends TestBase {
 		var output = new GenericParam();
 		var service = new UpdateRecordService();
 		input.setDb(getDb());
-		input.putString("tableName", "MGNRGRP");
+		input.putString("tableName", "GNR_GRP");
 		input.putString("recordId", "1000001");
 		input.putString("GNR_GRP_NAME", "システムプロパティ2");
 		input.putString("VERSION", "1");
 
 		service.doService(input, output);
-		assertEquals("MGNRGRP", output.getString("tableName"));
+		assertEquals("GNR_GRP", output.getString("tableName"));
 		assertEquals("1000001", output.getString("recordId"));
 		assertEquals("1", output.getString("updateCnt"));
-		var recordList = input.getDb().select("SELECT * FROM MGNRGRP WHERE MGNRGRP_ID = 1000001");
+		var recordList = input.getDb().select("SELECT * FROM GNR_GRP WHERE GNR_GRP_ID = 1000001");
 		assertEquals("システムプロパティ2", recordList.get(0).get("GNR_GRP_NAME"));
 		assertEquals("2", recordList.get(0).get("VERSION"));
 
@@ -132,16 +132,16 @@ public class UpdateRecordServiceTest extends TestBase {
 		var output = new GenericParam();
 		var service = new UpdateRecordService();
 		input.setDb(getDb());
-		input.putString("tableName", "MGNRGRP");
+		input.putString("tableName", "GNR_GRP");
 		input.putString("recordId", "1000001");
 		input.putString("GNR_GRP_NAME", "システムプロパティ3");
 		input.putString("UPDATED_AT", "2021-07-12 00:00:00");
 
 		service.doService(input, output);
-		assertEquals("MGNRGRP", output.getString("tableName"));
+		assertEquals("GNR_GRP", output.getString("tableName"));
 		assertEquals("1000001", output.getString("recordId"));
 		assertEquals("1", output.getString("updateCnt"));
-		var recordList = input.getDb().select("SELECT * FROM MGNRGRP WHERE MGNRGRP_ID = 1000001");
+		var recordList = input.getDb().select("SELECT * FROM GNR_GRP WHERE GNR_GRP_ID = 1000001");
 		assertEquals("システムプロパティ3", recordList.get(0).get("GNR_GRP_NAME"));
 
 		// DB更新をロールバックする
@@ -156,17 +156,17 @@ public class UpdateRecordServiceTest extends TestBase {
 		var output = new GenericParam();
 		var service = new UpdateRecordService();
 		input.setDb(getDb());
-		input.putString("tableName", "MGNRGRP");
+		input.putString("tableName", "GNR_GRP");
 		input.putString("recordId", "1000001");
 		input.putString("accountId", "dbadmin");
 		input.putString("GNR_GRP_NAME", "システムプロパティ4");
 		input.putString("UPDATED_BY", "dbadmin");
 
 		service.doService(input, output);
-		assertEquals("MGNRGRP", output.getString("tableName"));
+		assertEquals("GNR_GRP", output.getString("tableName"));
 		assertEquals("1000001", output.getString("recordId"));
 		assertEquals("1", output.getString("updateCnt"));
-		var recordList = input.getDb().select("SELECT * FROM MGNRGRP WHERE MGNRGRP_ID = 1000001");
+		var recordList = input.getDb().select("SELECT * FROM GNR_GRP WHERE GNR_GRP_ID = 1000001");
 		assertEquals("システムプロパティ4", recordList.get(0).get("GNR_GRP_NAME"));
 		assertEquals("dbadmin", recordList.get(0).get("UPDATED_BY"));
 
@@ -182,16 +182,16 @@ public class UpdateRecordServiceTest extends TestBase {
 		var output = new GenericParam();
 		var service = new UpdateRecordService();
 		input.setDb(getDb());
-		input.putString("tableName", "MGNRGRP");
+		input.putString("tableName", "GNR_GRP");
 		input.putString("recordId", "1000001");
 		input.putString("GNR_GRP_NAME", "システムプロパティ2");
 		input.putString("VERSION", "1");
 
 		service.doService(input, output);
-		assertEquals("MGNRGRP", output.getString("tableName"));
+		assertEquals("GNR_GRP", output.getString("tableName"));
 		assertEquals("1000001", output.getString("recordId"));
 		assertEquals("1", output.getString("updateCnt"));
-		var recordList = input.getDb().select("SELECT * FROM MGNRGRP WHERE MGNRGRP_ID = 1000001");
+		var recordList = input.getDb().select("SELECT * FROM GNR_GRP WHERE GNR_GRP_ID = 1000001");
 		assertEquals("システムプロパティ2", recordList.get(0).get("GNR_GRP_NAME"));
 		assertEquals("2", recordList.get(0).get("VERSION"));
 
@@ -200,7 +200,7 @@ public class UpdateRecordServiceTest extends TestBase {
 		input.putString("GNR_GRP_NAME", "システムプロパティ2");
 		service.doService(input, output);
 		assertEquals("redirect", output.getString("respKind"));
-		assertEquals("tableDataMainte/editRecord.html?tableName=MGNRGRP&recordId=1000001&errMsgKey=1",
+		assertEquals("tableDataMainte/editRecord.html?tableName=GNR_GRP&recordId=1000001&errMsgKey=1",
 				output.getString("destination"));
 
 		// DB更新をロールバックする

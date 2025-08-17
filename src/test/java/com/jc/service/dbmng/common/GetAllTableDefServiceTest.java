@@ -125,16 +125,16 @@ public class GetAllTableDefServiceTest extends TestBase {
 
 		// DB定義ファイルが出力されていることを確認する
 		String outputPath = OUTPUT_PATH + "dbmng/" + dbName + "/10_dbdef/20_auto_created/";
-		assertTrue(new File(outputPath + "MGNRGRP.txt").exists());
-		assertTrue(new File(outputPath + "MGNRGRP.txt").length() > 0);
-		assertTrue(new File(outputPath + "MGNRKEYVAL.txt").exists());
-		assertTrue(new File(outputPath + "MGNRKEYVAL.txt").length() > 0);
-		assertTrue(new File(outputPath + "TACCOUNT.txt").exists());
-		assertTrue(new File(outputPath + "TACCOUNT.txt").length() > 0);
-		assertTrue(new File(outputPath + "TSCR.txt").exists());
-		assertTrue(new File(outputPath + "TSCR.txt").length() > 0);
-		assertTrue(new File(outputPath + "TSCRELM.txt").exists());
-		assertTrue(new File(outputPath + "TSCRELM.txt").length() > 0);
+		assertTrue(new File(outputPath + "GNR_GRP.txt").exists());
+		assertTrue(new File(outputPath + "GNR_GRP.txt").length() > 0);
+		assertTrue(new File(outputPath + "GNR_KEY_VAL.txt").exists());
+		assertTrue(new File(outputPath + "GNR_KEY_VAL.txt").length() > 0);
+		assertTrue(new File(outputPath + "ACCNT.txt").exists());
+		assertTrue(new File(outputPath + "ACCNT.txt").length() > 0);
+		assertTrue(new File(outputPath + "SCR.txt").exists());
+		assertTrue(new File(outputPath + "SCR.txt").length() > 0);
+		assertTrue(new File(outputPath + "SCR_ELM.txt").exists());
+		assertTrue(new File(outputPath + "SCR_ELM.txt").length() > 0);
 	}
 
 	@Test
@@ -174,25 +174,25 @@ public class GetAllTableDefServiceTest extends TestBase {
 		String dirPath = OUTPUT_PATH + "dbmng/" + dbName;
 		String defPath = "10_dbdef/20_auto_created";
 		var tableNameList = new ArrayList<LinkedHashMap<String, String>>();
-		addMapToList(tableNameList, "MGNRGRP");
-		addMapToList(tableNameList, "MGNRKEYVAL");
-		addMapToList(tableNameList, "TACCOUNT");
-		addMapToList(tableNameList, "TSCR");
-		addMapToList(tableNameList, "TSCRELM");
+		addMapToList(tableNameList, "GNR_GRP");
+		addMapToList(tableNameList, "GNR_KEY_VAL");
+		addMapToList(tableNameList, "ACCNT");
+		addMapToList(tableNameList, "SCR");
+		addMapToList(tableNameList, "SCR_ELM");
 		doServiceByTableNameList(dirPath, defPath, getTableDefSql, tableNameList);
 
 		// DB定義ファイルが出力されていることを確認する
 		String outputPath = OUTPUT_PATH + "dbmng/" + dbName + "/10_dbdef/20_auto_created/";
-		assertTrue(new File(outputPath + "MGNRGRP.txt").exists());
-		assertTrue(new File(outputPath + "MGNRGRP.txt").length() > 0);
-		assertTrue(new File(outputPath + "MGNRKEYVAL.txt").exists());
-		assertTrue(new File(outputPath + "MGNRKEYVAL.txt").length() > 0);
-		assertTrue(new File(outputPath + "TACCOUNT.txt").exists());
-		assertTrue(new File(outputPath + "TACCOUNT.txt").length() > 0);
-		assertTrue(new File(outputPath + "TSCR.txt").exists());
-		assertTrue(new File(outputPath + "TSCR.txt").length() > 0);
-		assertTrue(new File(outputPath + "TSCRELM.txt").exists());
-		assertTrue(new File(outputPath + "TSCRELM.txt").length() > 0);
+		assertTrue(new File(outputPath + "GNR_GRP.txt").exists());
+		assertTrue(new File(outputPath + "GNR_GRP.txt").length() > 0);
+		assertTrue(new File(outputPath + "GNR_KEY_VAL.txt").exists());
+		assertTrue(new File(outputPath + "GNR_KEY_VAL.txt").length() > 0);
+		assertTrue(new File(outputPath + "ACCNT.txt").exists());
+		assertTrue(new File(outputPath + "ACCNT.txt").length() > 0);
+		assertTrue(new File(outputPath + "SCR.txt").exists());
+		assertTrue(new File(outputPath + "SCR.txt").length() > 0);
+		assertTrue(new File(outputPath + "SCR_ELM.txt").exists());
+		assertTrue(new File(outputPath + "SCR_ELM.txt").length() > 0);
 	}
 
 	@Test
@@ -282,15 +282,15 @@ public class GetAllTableDefServiceTest extends TestBase {
 
 	private void assertNoFileOutput() {
 		String outputPath = OUTPUT_PATH + "dbmng/" + dbName + "/10_dbdef/20_auto_created/";
-		assertFalse(new File(outputPath + "MGNRGRP.txt").exists());
-		assertFalse(new File(outputPath + "MGNRGRP.txt").length() > 0);
-		assertFalse(new File(outputPath + "MGNRKEYVAL.txt").exists());
-		assertFalse(new File(outputPath + "MGNRKEYVAL.txt").length() > 0);
-		assertFalse(new File(outputPath + "TACCOUNT.txt").exists());
-		assertFalse(new File(outputPath + "TACCOUNT.txt").length() > 0);
-		assertFalse(new File(outputPath + "TSCR.txt").exists());
-		assertFalse(new File(outputPath + "TSCR.txt").length() > 0);
-		assertFalse(new File(outputPath + "TSCRELM.txt").exists());
-		assertFalse(new File(outputPath + "TSCRELM.txt").length() > 0);
+		assertFalse(new File(outputPath + "GNR_GRP.txt").exists());
+		assertFalse(new File(outputPath + "GNR_GRP.txt").length() > 0);
+		assertFalse(new File(outputPath + "GNR_KEY_VAL.txt").exists());
+		assertFalse(new File(outputPath + "GNR_KEY_VAL.txt").length() > 0);
+		assertFalse(new File(outputPath + "ACCNT.txt").exists());
+		assertFalse(new File(outputPath + "ACCNT.txt").length() > 0);
+		assertFalse(new File(outputPath + "SCR.txt").exists());
+		assertFalse(new File(outputPath + "SCR.txt").length() > 0);
+		assertFalse(new File(outputPath + "SCR_ELM.txt").exists());
+		assertFalse(new File(outputPath + "SCR_ELM.txt").length() > 0);
 	}
 }

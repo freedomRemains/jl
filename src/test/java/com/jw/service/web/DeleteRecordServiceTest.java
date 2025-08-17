@@ -46,7 +46,7 @@ public class DeleteRecordServiceTest extends TestBase {
 		}
 
 		try {
-			input.putString("tableName", "MVIEWDEF");
+			input.putString("tableName", "VIEW_DEF");
 			service.doService(input, output);
 			fail();
 		} catch (BusinessRuleViolationException e) {
@@ -62,14 +62,14 @@ public class DeleteRecordServiceTest extends TestBase {
 		var output = new GenericParam();
 		var service = new DeleteRecordService();
 		input.setDb(getDb());
-		input.putString("tableName", "MVIEWDEF");
+		input.putString("tableName", "VIEW_DEF");
 		input.putString("recordId", "1000020");
 
 		service.doService(input, output);
-		assertEquals("MVIEWDEF", output.getString("tableName"));
+		assertEquals("VIEW_DEF", output.getString("tableName"));
 		assertEquals("1000020", output.getString("recordId"));
 		assertEquals("1", output.getString("updateCnt"));
-		var recordList = input.getDb().select("SELECT * FROM MVIEWDEF WHERE MVIEWDEF_ID = 1000020");
+		var recordList = input.getDb().select("SELECT * FROM VIEW_DEF WHERE VIEW_DEF_ID = 1000020");
 		assertEquals(0, recordList.size());
 
 		// DB更新をロールバックする
@@ -106,21 +106,21 @@ public class DeleteRecordServiceTest extends TestBase {
 		var output = new GenericParam();
 		var service = new DeleteRecordService();
 		input.setDb(getDb());
-		input.putString("tableName", "MVIEWDEF");
+		input.putString("tableName", "VIEW_DEF");
 		input.putString("recordId", "1000020");
 
 		service.doService(input, output);
-		assertEquals("MVIEWDEF", output.getString("tableName"));
+		assertEquals("VIEW_DEF", output.getString("tableName"));
 		assertEquals("1000020", output.getString("recordId"));
 		assertEquals("1", output.getString("updateCnt"));
-		var recordList = input.getDb().select("SELECT * FROM MVIEWDEF WHERE MVIEWDEF_ID = 1000020");
+		var recordList = input.getDb().select("SELECT * FROM VIEW_DEF WHERE VIEW_DEF_ID = 1000020");
 		assertEquals(0, recordList.size());
 
 		// もう一度削除(削除エラーを起こさせる)
 		input.putString("errMsgKey", "9999999");
 		service.doService(input, output);
 		assertEquals("redirect", output.getString("respKind"));
-		assertEquals("tableDataMainte.html?tableName=MVIEWDEF&errMsgKey=1",
+		assertEquals("tableDataMainte.html?tableName=VIEW_DEF&errMsgKey=1",
 				output.getString("destination"));
 
 		// DB更新をロールバックする

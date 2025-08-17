@@ -24,10 +24,10 @@
 
         <% ArrayList<String> partsInPageIdList = new ArrayList<String>();
            for (LinkedHashMap<String, String> columnMap : htmlPage) {
-             if (partsInPageIdList.contains(columnMap.get("TPARTSINPAGE_ID"))) {
+             if (partsInPageIdList.contains(columnMap.get("PARTS_IN_PAGE_ID"))) {
                continue; // 同一のページ内パーツIDを持つものが複数あっても、表示するのは1つだけ
              }
-             partsInPageIdList.add(columnMap.get("TPARTSINPAGE_ID")); %>
+             partsInPageIdList.add(columnMap.get("PARTS_IN_PAGE_ID")); %>
 
           <%@ include file="10010_header.jsp"%>
           <%@ include file="10020_error.jsp"%>

@@ -31,7 +31,7 @@ public class ErrMsgUtil {
 	public String getErrMsg(DbInterface db, String mgnrkeyvalId, Object... args) throws SQLException {
 
 		// 汎用グループIDをキーとして、エラーメッセージを取得する
-		var errMsgList = db.select("SELECT GNR_VAL FROM MGNRKEYVAL WHERE MGNRKEYVAL_ID = " + mgnrkeyvalId);
+		var errMsgList = db.select("SELECT GNR_VAL FROM GNR_KEY_VAL WHERE GNR_KEY_VAL_ID = " + mgnrkeyvalId);
 		return MessageFormat.format(errMsgList.get(0).get("GNR_VAL"), args);
 	}
 
@@ -40,8 +40,8 @@ public class ErrMsgUtil {
 
 		try {
 			// エラーメッセージIDの ( 最大値 + 1 ) を取得する
-			var maxIdRecord = db.select("SELECT MAX(TERRMSG_ID) FROM TERRMSG");
-			String maxErrMsgIdStr = maxIdRecord.get(0).get("MAX(TERRMSG_ID)");
+			var maxIdRecord = db.select("SELECT MAX(ERR_MSG_ID) FROM ERR_MSG");
+			String maxErrMsgIdStr = maxIdRecord.get(0).get("MAX(ERR_MSG_ID)");
 			if (Cu.isEmpty(maxErrMsgIdStr)) {
 				maxErrMsgIdStr = "0";
 			}
@@ -53,7 +53,7 @@ public class ErrMsgUtil {
 
 			// エラーメッセージテーブルにレコードを追加する
 			StringBuilder sql = new StringBuilder();
-			sql.append("INSERT INTO TERRMSG(TERRMSG_ID, SESSION_ID, TACCOUNT_ID, ERR_MSG, VERSION, IS_DELETED, CREATED_BY, CREATED_AT, UPDATED_BY, UPDATED_AT) VALUES(");
+			sql.append("INSERT INTO ERR_MSG(ERR_MSG_ID, SESSION_ID, ACCNT_ID, ERR_MSG, VERSION, IS_DELETED, CREATED_BY, CREATED_AT, UPDATED_BY, UPDATED_AT) VALUES(");
 			sql.append(Integer.toString(maxErrMsgId) + ", '" + sessionId + "', " + accountId + ", '" + errMsg + "', 1, 0, '" + accountId + "', '" + currentDate + "', '" + accountId + "', '" + currentDate + "')");
 			db.update(sql.toString());
 

@@ -66,7 +66,7 @@ public class GetAccountServiceTest extends TestBase {
 		input.putString("requestUri", "/jl/service/top.html");
 
 		service.doService(input, output);
-		assertEquals("1000001", output.getRecordList("account").get(0).get("TACCOUNT_ID"));
+		assertEquals("1000001", output.getRecordList("account").get(0).get("ACCNT_ID"));
 		assertEquals("ゲスト", output.getRecordList("account").get(0).get("ACCOUNT_NAME"));
 	}
 
@@ -86,7 +86,7 @@ public class GetAccountServiceTest extends TestBase {
 			fail();
 		} catch (RoleRestrictionException e) {
 			assertTrue(e.getLocalizedMessage().contains(
-					"[{MROLE_ID=1000301}, {MROLE_ID=1000401}]"));
+					"[{APROLE_ID=1000301}, {APROLE_ID=1000401}]"));
 		}
 	}
 
@@ -103,7 +103,7 @@ public class GetAccountServiceTest extends TestBase {
 		input.putString("accountId", "1000301");
 
 		service.doService(input, output);
-		assertEquals("1000301", output.getRecordList("account").get(0).get("TACCOUNT_ID"));
+		assertEquals("1000301", output.getRecordList("account").get(0).get("ACCNT_ID"));
 		assertEquals("マスタ", output.getRecordList("account").get(0).get("ACCOUNT_NAME"));
 	}
 

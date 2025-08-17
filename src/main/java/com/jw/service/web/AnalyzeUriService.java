@@ -72,10 +72,10 @@ public class AnalyzeUriService implements ServiceInterface {
 		// URIパターンをキーとしてページ情報を検索し、スクリプトIDを取得する
 		String sql = """
 				SELECT
-					A.MHTMLPAGE_ID, A.PAGE_NAME, A.TSCR_ID_GET, A.TSCR_ID_POST,
-					A.TSCR_ID_PUT, A.TSCR_ID_DELETE
-				FROM MHTMLPAGE A
-				LEFT JOIN MURIPATTERN B ON A.MURIPATTERN_ID = B.MURIPATTERN_ID
+					A.HTML_PAGE_ID, A.PAGE_NAME, A.SCR_ID_GET, A.SCR_ID_POST,
+					A.SCR_ID_PUT, A.SCR_ID_DELETE
+				FROM HTML_PAGE A
+				LEFT JOIN URI_PATTERN B ON A.URI_PATTERN_ID = B.URI_PATTERN_ID
 				WHERE B.URI_PATTERN = ?
 				""";
 		var paramList = new ArrayList<String>();
@@ -88,14 +88,14 @@ public class AnalyzeUriService implements ServiceInterface {
 		}
 
 		// リクエスト種別に応じたスクリプトIDを呼び出し側に返却する
-		if ("GET".equals(requestKind) && !"0".equals(recordList.get(0).get("TSCR_ID_GET"))) {
-			return recordList.get(0).get("TSCR_ID_GET");
-		} else  if ("POST".equals(requestKind) && !"0".equals(recordList.get(0).get("TSCR_ID_POST"))) {
-			return recordList.get(0).get("TSCR_ID_POST");
-		} else  if ("PUT".equals(requestKind) && !"0".equals(recordList.get(0).get("TSCR_ID_PUT"))) {
-			return recordList.get(0).get("TSCR_ID_PUT");
-		} else  if ("DELETE".equals(requestKind) && !"0".equals(recordList.get(0).get("TSCR_ID_DELETE"))) {
-			return recordList.get(0).get("TSCR_ID_DELETE");
+		if ("GET".equals(requestKind) && !"0".equals(recordList.get(0).get("SCR_ID_GET"))) {
+			return recordList.get(0).get("SCR_ID_GET");
+		} else  if ("POST".equals(requestKind) && !"0".equals(recordList.get(0).get("SCR_ID_POST"))) {
+			return recordList.get(0).get("SCR_ID_POST");
+		} else  if ("PUT".equals(requestKind) && !"0".equals(recordList.get(0).get("SCR_ID_PUT"))) {
+			return recordList.get(0).get("SCR_ID_PUT");
+		} else  if ("DELETE".equals(requestKind) && !"0".equals(recordList.get(0).get("SCR_ID_DELETE"))) {
+			return recordList.get(0).get("SCR_ID_DELETE");
 		} else {
 			throw new ApplicationInternalException(new Mu().msg("msg.err.invalidRequestKind",
 					requestUri, requestKind));
