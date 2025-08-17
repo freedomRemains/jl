@@ -49,9 +49,9 @@ public class TableNameSearchProcTest extends TestBase {
 		proc.doProc(input, output, input.getString("dirPath"));
 		assertNull(output.getDb());
 		assertEquals(5, output.getRecordList("tableNameList").size());
-		assertEquals("GNR_GRP", output.getRecordList("tableNameList").get(0).get("Tables_in_db"));
-		assertEquals("GNR_KEY_VAL", output.getRecordList("tableNameList").get(1).get("Tables_in_db"));
-		assertEquals("ACCNT", output.getRecordList("tableNameList").get(2).get("Tables_in_db"));
+		assertEquals("ACCNT", output.getRecordList("tableNameList").get(0).get("Tables_in_db"));
+		assertEquals("GNR_GRP", output.getRecordList("tableNameList").get(1).get("Tables_in_db"));
+		assertEquals("GNR_KEY_VAL", output.getRecordList("tableNameList").get(2).get("Tables_in_db"));
 		assertEquals("SCR", output.getRecordList("tableNameList").get(3).get("Tables_in_db"));
 		assertEquals("SCR_ELM", output.getRecordList("tableNameList").get(4).get("Tables_in_db"));
 	}
